@@ -1,15 +1,18 @@
 package id.or.k4x2.monopoly.ui;
 
+import id.or.k4x2.monopoly.entity.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class RightsideLotPane {
+public class RightsideLotPane extends UITile {
     private JPanel panel;
     private JLabel propertyName;
     private JPanel panelColor;
 
-    public RightsideLotPane(String propertyName, Color color) {
-        this.propertyName.setText(propertyName);
+    public RightsideLotPane(Tile tile, String propertyName, Color color) {
+        super(tile);
+        this.propertyName.setText("<html><center>" + propertyName.replaceAll("\n", "<br>") + "</center></html>");
         this.panelColor.setBackground(color);
     }
 

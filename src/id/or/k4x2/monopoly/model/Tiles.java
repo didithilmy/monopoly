@@ -1,6 +1,9 @@
 package id.or.k4x2.monopoly.model;
 
-import id.or.k4x2.monopoly.entity.Spaces.StartTile;
+import id.or.k4x2.monopoly.entity.Properties.Lot;
+import id.or.k4x2.monopoly.entity.Properties.Railroad;
+import id.or.k4x2.monopoly.entity.Properties.Utility;
+import id.or.k4x2.monopoly.entity.Spaces.*;
 import id.or.k4x2.monopoly.entity.Tile;
 
 public class Tiles {
@@ -12,51 +15,81 @@ public class Tiles {
         tiles[0] = new StartTile();
 
         // Community chest
-        tiles[2].add(new GenericTile("Dana\nUmum").getPanel());
-        tiles[17].add(new GenericTile("Dana\nUmum").getPanel());
-        tiles[33].add(new GenericTile("Dana\nUmum").getPanel());
+        tiles[2] = new CommunityChest();
+        tiles[17] = new CommunityChest();
+        tiles[33] = new CommunityChest();
 
         // Chance
-        tiles[7].add(new GenericTile("Kesempatan").getPanel());
-        tiles[22].add(new GenericTile("Kesempatan").getPanel());
-        tiles[36].add(new GenericTile("Kesempatan").getPanel());
+        tiles[7] = new Chance();
+        tiles[22] = new Chance();
+        tiles[36] = new Chance();
+
+        // Utilities
+        tiles[12] = new Utility("Perusahaan Listrik", 0);  // Perusahaan Listrik
+        tiles[28] = new Utility("Perusahaan Air", 0);  // Perusahaan Air
+
+        // Public services
+        tiles[5] = new Railroad("Bandara Kemayoran", 0);  // Bandara Kemayoran
+        tiles[15] = new Railroad("Terminal Bis Semarang", 0);  // Terminal bis semarang
+        tiles[25] = new Railroad("Stasiun Pasar Turi", 0);  // Stasiun Ps. Turi
+        tiles[35] = new Railroad("Pelabuhan Belawan", 0);  // Pelabuhan Belawan
+
+        // Taxes
+        tiles[4] = new Taxation();  // Pajak Jalan
+        tiles[38] = new Taxation(); // Pajak Istimewa
+
+        //Jail
+        tiles[10] = new FreeParking();  // Penjara
+        tiles[30] = new GoToJail(); // Pergi ke Penjara
+
+        // Free parking
+        tiles[20] = new FreeParking();
 
         // Brown block
-        tiles[1].add(new BottomsideLotPane("Monas", new Color(139, 69, 17)).getPanel());
-        tiles[3].add(new BottomsideLotPane("Taman\nMini", new Color(139, 69, 17)).getPanel());
+        tiles[1] = new Lot("Monas", 0, Lot.Group.BROWN);
+        tiles[3] = new Lot("Taman Mini", 0, Lot.Group.BROWN);
 
         // Light blue block
-        tiles[6].add(new BottomsideLotPane("Ragunan", new Color(132, 207, 235)).getPanel());
-        tiles[8].add(new BottomsideLotPane("Binaria", new Color(132, 207, 235)).getPanel());
-        tiles[9].add(new BottomsideLotPane("Taman\nPluit", new Color(132, 207, 235)).getPanel());
+        tiles[6] = new Lot("Ragunan", 0, Lot.Group.LIGHT_BLUE);
+        tiles[8] = new Lot("Binaria", 0, Lot.Group.LIGHT_BLUE);
+        tiles[9] = new Lot("Taman Pluit", 0, Lot.Group.LIGHT_BLUE);
 
         // Purple block
-        tiles[11].add(new LeftsideLotPane("Kebun\nRaya\nBogor", new Color(152, 49, 203)).getPanel());
-        tiles[13].add(new LeftsideLotPane("Pelabuhan\nRatu", new Color(152, 49, 203)).getPanel());
-        tiles[14].add(new LeftsideLotPane("Tangkuban\nPerahu", new Color(152, 49, 203)).getPanel());
+        tiles[11] = new Lot("Kebun Raya Bogor", 0, Lot.Group.PURPLE);
+        tiles[13] = new Lot("Pelabuhan Ratu", 0, Lot.Group.PURPLE);
+        tiles[14] = new Lot("Tangkuban Perahu", 0, Lot.Group.PURPLE);
 
         // Orange block
-        tiles[16].add(new LeftsideLotPane("Gedung\nBatu", new Color(246, 171, 0)).getPanel());
-        tiles[18].add(new LeftsideLotPane("Kopeng", new Color(246, 171, 0)).getPanel());
-        tiles[19].add(new LeftsideLotPane("Borobudur", new Color(246, 171, 0)).getPanel());
+        tiles[16] = new Lot("Gedung Batu", 0, Lot.Group.ORANGE);
+        tiles[18] = new Lot("Kopeng", 0, Lot.Group.ORANGE);
+        tiles[19] = new Lot("Borobudur", 0, Lot.Group.ORANGE);
 
         // Red block
-        tiles[21].add(new TopsideLotPane("Prambanan", new Color(252, 4, 5)).getPanel());
-        tiles[23].add(new TopsideLotPane("Kraton\nYogya", new Color(252, 4, 5)).getPanel());
-        tiles[24].add(new TopsideLotPane("Bengawan\nSolo", new Color(252, 4, 5)).getPanel());
+        tiles[21] = new Lot("Prambanan", 0, Lot.Group.RED);
+        tiles[23] = new Lot("Kraton Yogya", 0, Lot.Group.RED);
+        tiles[24] = new Lot("Bengawan Solo", 0, Lot.Group.RED);
 
         // Yellow block
-        tiles[26].add(new TopsideLotPane("Sarangan", new Color(254, 254, 3)).getPanel());
-        tiles[27].add(new TopsideLotPane("Selecta", new Color(254, 254, 3)).getPanel());
-        tiles[29].add(new TopsideLotPane("Gn. Kawi", new Color(254, 254, 3)).getPanel());
+        tiles[26] = new Lot("Sarangan", 0, Lot.Group.YELLOW);
+        tiles[27] = new Lot("Selecta", 0, Lot.Group.YELLOW);
+        tiles[29] = new Lot("Gunung Kawi", 0, Lot.Group.YELLOW);
 
         // Green block
-        tiles[31].add(new RightsideLotPane("Pantai\nSanur", new Color(0, 128, 0)).getPanel());
-        tiles[32].add(new RightsideLotPane("Tampak\nSiring", new Color(0, 128, 0)).getPanel());
-        tiles[34].add(new RightsideLotPane("Taman\nLaut\nBanda", new Color(0, 128, 0)).getPanel());
+        tiles[31] = new Lot("Pantai Sanur", 0, Lot.Group.GREEN);
+        tiles[32] = new Lot("Tampak Siring", 0, Lot.Group.GREEN);
+        tiles[34] = new Lot("Taman Laut Banda", 0, Lot.Group.GREEN);
 
         // Blue block
-        tiles[37].add(new RightsideLotPane("Danau\nToba", new Color(0, 0, 192)).getPanel());
-        tiles[39].add(new RightsideLotPane("Brastagi", new Color(0, 0, 192)).getPanel());
+        tiles[37] = new Lot("Danau Toba", 0, Lot.Group.BLUE);
+        tiles[39] = new Lot("Brastagi", 0, Lot.Group.BLUE);
+    }
+
+    /**
+     * Get Tile by index
+     * @param index index
+     * @return Tile entity
+     */
+    public static Tile getTile(int index) {
+        return tiles[index];
     }
 }

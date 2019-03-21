@@ -62,7 +62,7 @@ public class BoardWindow {
     }
 
     private void initiateTiles() {
-        // Start
+        // StartTile
         tile0.add(new GenericTile("Mulai\nRp200").getPanel());
 
         // Community chest

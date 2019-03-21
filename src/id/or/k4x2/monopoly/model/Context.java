@@ -22,16 +22,24 @@ public class Context {
     private List<Player> players;
     private Player currentPlayer;
     private Dice dice;
+    private State state;
 
     private Context() {
-        players = new ArrayList<>();
         dice = new Dice();
+        state = State.NOT_STARTED;
     }
 
     public List<Player> getPlayers() {
         return players;
     }
 
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    /**
+     * StartTile a new game
+     */
     public void start() {
         if(players.size() < 2) {
             throw new RuntimeException("Player size must be greater than 2");
@@ -39,6 +47,18 @@ public class Context {
 
         // Set the current player to Player 1
         currentPlayer = players.get(0);
+
+        // Set state to Started
+        state = State.IN_GAME;
+
+        // Shuffle dice
         dice.shuffle();
+    }
+
+    /**
+     * Move to the next player
+     */
+    public void nextTurn() {
+        // TODO implement
     }
 }

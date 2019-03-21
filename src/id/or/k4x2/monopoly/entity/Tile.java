@@ -12,5 +12,12 @@ public abstract class Tile extends Entity {
      * This method is called when a player lands on the Tile
      * @param player Player entity
      */
-    //public abstract void onPlayerLanding(Player player);
+    public abstract void onPlayerLanding(Player player);
+
+    /**
+     * On Player Leaving
+     * This method is called when a player is leaving off the Tile
+     * @param player Player entity
+     */
+    public abstract void onPlayerLeaving(Player player);
 }

@@ -2,6 +2,7 @@ package id.or.k4x2.monopoly.ui;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.GameStateListener;
+import id.or.k4x2.monopoly.listeners.PlayerMovedListener;
 import id.or.k4x2.monopoly.model.Tiles;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BoardWindow implements GameStateListener {
+public class BoardWindow implements GameStateListener, PlayerMovedListener {
     private JPanel panelMain;
     private JPanel tile0;
     private JPanel tile1;
@@ -197,5 +198,14 @@ public class BoardWindow implements GameStateListener {
                 ((PlayerOverlay) jPanel).detachAllPlayers();
             }
         }
+    }
+
+    /**
+     * On player moved
+     * @param player Player entity
+     * @param tileIndex the index of the destination tile
+     */
+    public void onPlayerMoved(Player player, int tileIndex) {
+        // TODO implement
     }
 }

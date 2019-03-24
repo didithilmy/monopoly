@@ -39,6 +39,7 @@ public class Cards {
             new MoveToCard("Pajak","Ketahuan belum bayar pajak saat pacaran, Anda dipaksa bayar Pajak Jalan",4),
             new MoveToCard("Kunjungan","Anda ingin menjenguk Audi di penjara. Pindah ke penjara",10)
     };
+
     //0-6 7-14 15-20 21-29
     private static final Card[] chanceCards = {
             cards[0], cards[1], cards[2], cards[7], cards[8],
@@ -94,5 +95,15 @@ public class Cards {
             cards[27], cards[27], cards[28], cards[28], cards[29]
     };
 
+    public static Card[] getCards() {
+        return cards;
+    }
 
+    public static Card[] getChanceCards() {
+        return chanceCards;
+    }
+
+    public static Card[] getCommunityChestCards() {
+        return communityChestCards;
+    }
 }

@@ -62,6 +62,8 @@ public class GameManager {
         // TODO implement
     }
 
+    //TODO move player relative
+
     /**
      * Deduct money
      * @param player Player entity

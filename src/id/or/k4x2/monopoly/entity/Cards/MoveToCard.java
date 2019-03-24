@@ -1,6 +1,7 @@
 package id.or.k4x2.monopoly.entity.Cards;
 
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.model.GameManager;
 
 /**
  * Move to card entity
@@ -23,6 +24,6 @@ public class MoveToCard extends Card {
     }
 
     public void doAction(Player player) {
-        //TODO move to somewhere else
+        GameManager.getInstance().movePlayer(player,tileIndex);
     }
 }

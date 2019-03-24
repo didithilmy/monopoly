@@ -1,6 +1,7 @@
 package id.or.k4x2.monopoly.entity.Cards;
 
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.model.GameManager;
 
 /**
  * add money card entity
@@ -23,6 +24,6 @@ public class AddMoneyCard extends Card {
     }
 
     public void doAction(Player player) {
-        //TODO add money
+        GameManager.getInstance().addMoney(player,addmoney);
     }
 }

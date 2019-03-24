@@ -11,6 +11,7 @@ public class FreeParking extends Space {
      */
     public void onPlayerLanding(Player player) {
         // TODO implement
+
     }
 
     /**

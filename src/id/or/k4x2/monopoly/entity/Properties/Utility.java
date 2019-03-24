@@ -3,7 +3,10 @@ package id.or.k4x2.monopoly.entity.Properties;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
 
+/* @author Claudia Renata, 18217048 */
+
 public class Utility extends Property {
+    
 
     public Utility(String name, int basePrice) {
         super(name, basePrice);
@@ -14,8 +17,17 @@ public class Utility extends Property {
      * @return rent price
      */
     public int getRentPrice() {
-        // TODO implement
-        return 0;
+        if (getOwner() == null) {
+            return 0;
+        } else {
+           if (getNumUtility(getOwner())==1){
+                return(1/8 * getBasePrice());
+            }else if (getNumUtility(getOwner())==2){ 
+                return(1/2 * getBasePrice()); 
+             }else {
+                return(getBasePrice()); 
+            }
+        } 
     }
 
     /**
@@ -24,7 +36,12 @@ public class Utility extends Property {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        // TODO implement
+        if (getOwner()!= null){ 
+            if (getOwner()!=player){
+                //TODO get charges (game manager) based on rent prices
+                //TODO cek bankcrupt or no (game manager)
+            }
+        }               
     }
 
     /**
@@ -34,5 +51,15 @@ public class Utility extends Property {
      */
     public void onPlayerLeaving(Player player) {
         // TODO implement
+    }
+    
+    public static int getNumUtility(Player player){
+        int count=0; 
+        for (Property property: player.getProperties()){
+            if (property instanceof Utility ){
+                count++; 
+            }
+        }
+        return count; 
     }
 }

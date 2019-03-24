@@ -3,9 +3,14 @@ package id.or.k4x2.monopoly.entity.Properties;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
 
+/**
+ * Lot entity
+ * @author Muhammad Yanza Hattari/18217043
+ */
 public class Lot extends Property {
     private Group group;
     private int noOfHouses = 0;
+    public final static float HOUSE_PRICE_FACTOR = 0.5f;
 
     public Lot(String name, int basePrice, Group group) {
         super(name, basePrice);
@@ -19,7 +24,27 @@ public class Lot extends Property {
      */
     public int getRentPrice() {
         // TODO implement
-        return 0;
+        if (getOwner()!=null) {
+            if (noOfHouses == 0) {
+                if (getNoGroupOwned(getOwner(), this.group)==group.getNo()) {
+                    return (getBasePrice() / 4);
+                } else {
+                    return (getBasePrice() / 8);
+                }
+            } else if (noOfHouses == 1) {
+                return (getBasePrice() / 2);
+            } else if (noOfHouses == 2) {
+                return (getBasePrice());
+            } else if (noOfHouses == 3) {
+                return (getBasePrice() * 2);
+            } else if (noOfHouses == 4) {
+                return (getRentPrice() * 4);
+            }
+            else {
+                throw new RuntimeException("Illegal noOfHouses");
+            }
+        }
+        else {return 0;}
     }
 
     /**
@@ -29,6 +54,28 @@ public class Lot extends Property {
      */
     public void onPlayerLanding(Player player) {
         // TODO implement
+        if (getOwner()!=null) {
+            if (getOwner()==player) {
+                //TODO offer player to build house
+            }
+            else {
+                //TODO rent price - money
+                //TODO check bankrupt
+            }
+        }
+    }
+
+    public static int getNoGroupOwned(Player player,Group group) {
+        int a = 0;
+        for (Property property: player.getProperties()) {
+            if (property instanceof Lot) {
+                Lot lot = (Lot) property;
+                if (lot.group== group) {
+                    a++;
+                }
+            }
+        }
+        return (a);
     }
 
     /**
@@ -46,6 +93,23 @@ public class Lot extends Property {
      */
     public void constructHouse() throws LotException {
         // TODO implement
+        if (getNoGroupOwned(getOwner(),this.group)==group.getNo()) {
+            int price = (int) (getBasePrice()*HOUSE_PRICE_FACTOR);
+            if (noOfHouses<4) {
+                if (getOwner().getMoney() < price) {
+                    throw new LotException(LotException.Error.INSUFFICIENT_FUND);
+                } else {
+                    //TODO charge player's money with price
+                    noOfHouses++;
+                }
+            }
+            else {
+                throw new LotException(LotException.Error.MAX_HOUSES);
+            }
+        }
+        else {
+            throw new LotException(LotException.Error.GROUP_NOT_OWNED);
+        }
     }
 
     /**

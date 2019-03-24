@@ -1,16 +1,21 @@
 package id.or.k4x2.monopoly.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player extends Entity {
     public final static int INITIAL_MONEY = 200;
 
     private String name;
     private int money;
     private Designation designation;
+    private List<Property> properties;
 
     public Player(String name, Designation designation) {
         this.name = name;
         this.money = INITIAL_MONEY;
         this.designation = designation;
+        this.properties = new ArrayList<>();
     }
 
     public String getName() {
@@ -19,6 +24,10 @@ public class Player extends Entity {
 
     public int getMoney() {
         return money;
+    }
+
+    public List<Property> getProperties() {
+        return properties;
     }
 
     public Designation getDesignation() {

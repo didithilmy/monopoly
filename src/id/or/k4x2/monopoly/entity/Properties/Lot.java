@@ -52,7 +52,17 @@ public class Lot extends Property {
      * Lot group enumeration
      */
     public enum Group {
-        BROWN, LIGHT_BLUE, PURPLE, ORANGE, RED, YELLOW, GREEN, BLUE;
+        BROWN(2), LIGHT_BLUE(3), PURPLE(3), ORANGE(3), RED(3), YELLOW(3), GREEN(3), BLUE(2);
+
+        private int no;
+
+        Group(int no) {
+            this.no = no;
+        }
+
+        public int getNo() {
+            return no;
+        }
     }
 
     /**

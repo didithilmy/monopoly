@@ -19,46 +19,58 @@ public class Context {
         return instance;
     }
 
-    private List<Player> players;
-    private Player currentPlayer;
+    private int currentPlayerIndex = 0;
+    private boolean diceRolled = false;
     private Dice dice;
-    private State state;
 
     private Context() {
         dice = new Dice();
-        state = State.NOT_STARTED;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
     }
 
     /**
-     * StartTile a new game
+     * Start game
      */
     public void start() {
-        if(players.size() < 2) {
-            throw new RuntimeException("Player size must be greater than 2");
-        }
-
-        // Set the current player to Player 1
-        currentPlayer = players.get(0);
-
-        // Set state to Started
-        state = State.IN_GAME;
-
-        // Shuffle dice
-        dice.shuffle();
+        currentPlayerIndex = 0;
+        diceRolled = false;
     }
 
     /**
-     * Move to the next player
+     * Roll the dice
      */
-    public void nextTurn() {
-        // TODO implement
+    public void rollDice() {
+        // TODO roll the dice
+        // TODO move player
+
+        diceRolled = true;
+    }
+
+    /**
+     * End the player turn
+     */
+    public void endTurn() {
+        // TODO end turn
+
+        int noOfPlayers = GameManager.getInstance().getPlayers().size();
+
+        // Move to next player in array
+        currentPlayerIndex++;
+        if(currentPlayerIndex >= noOfPlayers) {
+            currentPlayerIndex = 0;
+        }
+
+        diceRolled = false;
+    }
+
+    /**
+     * Get current player
+     * @return current Player
+     */
+    public Player getCurrentPlayer() {
+        return GameManager.getInstance().getPlayers().get(currentPlayerIndex);
+    }
+
+    public Dice getDice() {
+        return dice;
     }
 }

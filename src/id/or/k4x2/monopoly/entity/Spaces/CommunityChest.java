@@ -1,8 +1,16 @@
 package id.or.k4x2.monopoly.entity.Spaces;
 
+import id.or.k4x2.monopoly.entity.Cards.Card;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Space;
+import id.or.k4x2.monopoly.model.Cards;
 
+import java.util.Random;
+
+/**
+ * Randomize community chest cards
+ * @author Muhammad Yanza Hattari/18217043
+ */
 public class CommunityChest extends Space {
     /**
      * On Player Landing
@@ -10,7 +18,11 @@ public class CommunityChest extends Space {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        // TODO implement
+        Card[] cards = Cards.getCommunityChestCards();
+        Random rand = new Random();
+        int n = rand.nextInt(cards.length-1);
+        Card card = cards[n];
+        card.doAction(player);
     }
 
     /**

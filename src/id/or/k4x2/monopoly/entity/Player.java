@@ -26,6 +26,22 @@ public class Player extends Entity {
         return money;
     }
 
+    /**
+     * Deduct money
+     * @param nominal nominal
+     */
+    public void deductMoney(int nominal) {
+        money -= nominal;
+    }
+
+    /**
+     * Add money
+     * @param nominal nominal
+     */
+    public void addMoney(int nominal) {
+        money += nominal;
+    }
+
     public List<Property> getProperties() {
         return properties;
     }

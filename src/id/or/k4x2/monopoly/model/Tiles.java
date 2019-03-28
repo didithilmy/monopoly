@@ -90,6 +90,13 @@ public class Tiles {
      * @return Tile entity
      */
     public static Tile getTile(int index) {
-        return tiles[index];
+        if(index < tiles.length)
+            return tiles[index];
+        else
+            return null;
+    }
+
+    public static Tile[] getTiles() {
+        return tiles;
     }
 }

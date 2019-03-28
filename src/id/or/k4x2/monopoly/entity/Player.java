@@ -10,12 +10,14 @@ public class Player extends Entity {
     private int money;
     private Designation designation;
     private List<Property> properties;
+    private boolean bankrupted;
 
     public Player(String name, Designation designation) {
         this.name = name;
         this.money = INITIAL_MONEY;
         this.designation = designation;
         this.properties = new ArrayList<>();
+        this.bankrupted = false;
     }
 
     public String getName() {
@@ -40,6 +42,14 @@ public class Player extends Entity {
      */
     public void addMoney(int nominal) {
         money += nominal;
+    }
+
+    public boolean isBankrupted() {
+        return bankrupted;
+    }
+
+    public void setBankrupted(boolean bankrupted) {
+        this.bankrupted = bankrupted;
     }
 
     public List<Property> getProperties() {

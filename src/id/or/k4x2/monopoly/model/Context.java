@@ -39,8 +39,30 @@ public class Context {
      * Roll the dice
      */
     public void rollDice() {
-        // TODO roll the dice
-        // TODO move player
+        // Shuffle dice
+        dice.shuffle();
+
+        // TODO check if player is jailed
+        boolean playerJailed = false;
+
+        if(playerJailed) {
+            // If player is in jail, check if double dice
+            if(dice.isDoubleDice()) {
+                // Double dice, release from jail
+                // TODO release from jail
+                playerJailed = false;
+            }
+        }
+
+        if(!playerJailed) {
+            // If player is not jailed, move is legal
+            Player player = getCurrentPlayer();
+            int currentPos = GameManager.getInstance().getPlayerTileIndex(player);
+            int newPos = (currentPos + dice.getSum()) % Tiles.getTiles().length;
+
+            // Move player
+            GameManager.getInstance().movePlayer(player, newPos);
+        }
 
         diceRolled = true;
     }
@@ -50,6 +72,9 @@ public class Context {
      */
     public void endTurn() {
         // TODO end turn
+
+        // Search for non-bankrupted player
+        // TODO use while
 
         int noOfPlayers = GameManager.getInstance().getPlayers().size();
 

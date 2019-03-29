@@ -5,16 +5,23 @@ import id.or.k4x2.monopoly.model.Context;
 import id.or.k4x2.monopoly.model.GameManager;
 import id.or.k4x2.monopoly.model.Tiles;
 import id.or.k4x2.monopoly.ui.BoardWindow;
+import id.or.k4x2.monopoly.ui.GameWindow;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Tiles.init();
-        JFrame frame = new JFrame("BoardWindow");
-        frame.setContentPane(new BoardWindow().createPanel());
+        JFrame frame = new JFrame("Engi's Monopoly");
+
+        GameWindow gameWindow = new GameWindow();
+        gameWindow.getBoardPane().add(new BoardWindow().getPanelMain());
+        gameWindow.getDicePane().setBackground(Color.CYAN);
+
+        frame.setContentPane(gameWindow.getPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

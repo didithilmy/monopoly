@@ -5,6 +5,7 @@ import id.or.k4x2.monopoly.model.Context;
 import id.or.k4x2.monopoly.model.GameManager;
 import id.or.k4x2.monopoly.model.Tiles;
 import id.or.k4x2.monopoly.ui.BoardWindow;
+import id.or.k4x2.monopoly.ui.ButtonPane;
 import id.or.k4x2.monopoly.ui.GameWindow;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class Main {
 
         GameWindow gameWindow = new GameWindow();
         gameWindow.getBoardPane().add(new BoardWindow().getPanelMain());
-        gameWindow.getDicePane().setBackground(Color.CYAN);
+        gameWindow.getDicePane().add(new ButtonPane().getPanel());
 
         frame.setContentPane(gameWindow.getPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

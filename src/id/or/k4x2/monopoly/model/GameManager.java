@@ -112,6 +112,25 @@ public class GameManager {
     }
 
     /**
+     * Move player relative to current position
+     * @param player Player entity
+     * @param relativeTiles relative tiles (negative for go back, positive for go forward)
+     */
+    public void movePlayerRelative(Player player, int relativeTiles) {
+        int currentPos = positionMap.get(player.getDesignation());
+        int nextPos = currentPos + relativeTiles;
+
+        int noOfTiles = Tiles.getTiles().length;
+        if(nextPos >= noOfTiles) {
+            nextPos = nextPos % noOfTiles;
+        } else if(nextPos < 0) {
+            nextPos += noOfTiles;
+        }
+
+        movePlayer(player, nextPos, false);
+    }
+
+    /**
      * Deduct money
      * @param player Player entity
      * @param nominal nominal to deduct

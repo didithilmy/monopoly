@@ -45,8 +45,8 @@ public class Railroad extends Property {
         // cek dah ada owner atau belom, kalo belom tawarin. kalo dia mau beli kurangin duit dan set owner = player, kalo gamau return owner return null
         if (getOwner() != null) {
             if (getOwner() != player) {
-                // TODO decreased player's money (game manager) based on rentPrice
-                // TODO check bankrupt or no
+                GameManager.getInstance().deductMoney(player,getRentPrice());
+                GameManager.getInstance().checkBankruptcy();
             }
         }
     }

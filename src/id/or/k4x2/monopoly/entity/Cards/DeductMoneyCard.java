@@ -1,6 +1,7 @@
 package id.or.k4x2.monopoly.entity.Cards;
 
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.model.GameManager;
 
 /**
  * deduct money entity
@@ -23,6 +24,6 @@ public class DeductMoneyCard extends Card {
     }
 
     public void doAction(Player player) {
-        //TODO deduct money
+        GameManager.getInstance().deductMoney(player,dedmoney);
     }
 }

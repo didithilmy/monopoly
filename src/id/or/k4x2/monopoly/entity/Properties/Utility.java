@@ -2,8 +2,11 @@ package id.or.k4x2.monopoly.entity.Properties;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
-
-/* @author Claudia Renata, 18217048 */
+import id.or.k4x2.monopoly.model.GameManager;
+/**
+ * @author Claudia Renata, 18217048
+ * @author Muhammad Yanza Hattari/18217043
+*/
 
 public class Utility extends Property {
     
@@ -38,8 +41,8 @@ public class Utility extends Property {
     public void onPlayerLanding(Player player) {
         if (getOwner()!= null){ 
             if (getOwner()!=player){
-                //TODO get charges (game manager) based on rent prices
-                //TODO cek bankcrupt or no (game manager)
+                GameManager.getInstance().deductMoney(player,getRentPrice());
+                GameManager.getInstance().checkBankruptcy();
             }
         }               
     }

@@ -2,6 +2,7 @@ package id.or.k4x2.monopoly.entity.Properties;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
+import id.or.k4x2.monopoly.model.GameManager;
 
 /**
  * Lot entity
@@ -23,7 +24,6 @@ public class Lot extends Property {
      * @return rent price
      */
     public int getRentPrice() {
-        // TODO implement
         if (getOwner()!=null) {
             if (noOfHouses == 0) {
                 if (getNoGroupOwned(getOwner(), this.group)==group.getNo()) {
@@ -53,14 +53,13 @@ public class Lot extends Property {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        // TODO implement
         if (getOwner()!=null) {
             if (getOwner()==player) {
                 //TODO offer player to build house
             }
             else {
-                //TODO rent price - money
-                //TODO check bankrupt
+                GameManager.getInstance().deductMoney(player,getRentPrice());
+                GameManager.getInstance().checkBankruptcy();
             }
         }
     }
@@ -92,14 +91,13 @@ public class Lot extends Property {
      * @throws LotException if a house can't be constructed
      */
     public void constructHouse() throws LotException {
-        // TODO implement
         if (getNoGroupOwned(getOwner(),this.group)==group.getNo()) {
             int price = (int) (getBasePrice()*HOUSE_PRICE_FACTOR);
             if (noOfHouses<4) {
                 if (getOwner().getMoney() < price) {
                     throw new LotException(LotException.Error.INSUFFICIENT_FUND);
                 } else {
-                    //TODO charge player's money with price
+                    GameManager.getInstance().deductMoney(getOwner(),price);
                     noOfHouses++;
                 }
             }

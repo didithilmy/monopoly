@@ -10,7 +10,6 @@ public class StartTile extends Space {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        // TODO implement
     }
 
     /**

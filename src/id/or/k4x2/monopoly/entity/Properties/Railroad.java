@@ -2,6 +2,7 @@ package id.or.k4x2.monopoly.entity.Properties;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
+import id.or.k4x2.monopoly.model.GameManager;
 
 /*
  * @author Zalikha Adiera Gambetta, NIM 18217027

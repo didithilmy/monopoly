@@ -19,6 +19,10 @@ public class Dice {
         return die1 + die2;
     }
 
+    public boolean isDoubleDice() {
+        return die1 == die2;
+    }
+
     public void shuffle() {
         die1 = 	(int)(Math.random() * ((6 - 1) + 1)) + 1;
         die2 = 	(int)(Math.random() * ((6 - 1) + 1)) + 1;

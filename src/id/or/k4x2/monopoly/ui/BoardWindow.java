@@ -2,12 +2,15 @@ package id.or.k4x2.monopoly.ui;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.GameStateListener;
+import id.or.k4x2.monopoly.listeners.Listeners;
 import id.or.k4x2.monopoly.listeners.PlayerMovedListener;
+import id.or.k4x2.monopoly.model.GameManager;
 import id.or.k4x2.monopoly.model.Tiles;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BoardWindow implements GameStateListener, PlayerMovedListener {
@@ -71,6 +74,10 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener {
         positionsMap = new HashMap<>();
 
         initiateTiles();
+
+        // Register listener
+        Listeners.addGameStateListener(this);
+        Listeners.addPlayerMoveListener(this);
     }
 
     private void initiateTiles() {
@@ -111,9 +118,6 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener {
         // Brown block
         tile1.add(new PlayerOverlay(new BottomsideLotPane(Tiles.getTile(1), "Monas", new Color(139, 69, 17))));
         tile3.add(new PlayerOverlay(new BottomsideLotPane(Tiles.getTile(3), "Taman\nMini", new Color(139, 69, 17))));
-
-        ((PlayerOverlay) tile1.getComponent(0)).attachPlayer(new Player("Player 1", Player.Designation.PLAYER_A));
-        ((PlayerOverlay) tile1.getComponent(0)).attachPlayer(new Player("Player 2", Player.Designation.PLAYER_B));
 
         // Light blue block
         tile6.add(new PlayerOverlay(new BottomsideLotPane(Tiles.getTile(6), "Ragunan", new Color(132, 207, 235))));
@@ -182,6 +186,13 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener {
      */
     public void onGameStart() {
         // TODO implement
+        List<Player> players = GameManager.getInstance().getPlayers();
+
+        // Initiate players
+        for(Player player : players) {
+            positionsMap.put(player.getDesignation(), 0);   // Put everyone on Go
+            onPlayerMoved(player, 0);
+        }
     }
 
     /**
@@ -206,6 +217,16 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener {
      * @param tileIndex the index of the destination tile
      */
     public void onPlayerMoved(Player player, int tileIndex) {
-        // TODO implement
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                // Detach player from old position
+                int oldPosition = positionsMap.get(player.getDesignation());
+                ((PlayerOverlay) tiles[oldPosition].getComponent(0)).detachPlayer(player.getDesignation());
+
+                // Attach player to new position
+                ((PlayerOverlay) tiles[tileIndex].getComponent(0)).attachPlayer(player.getDesignation());
+            }
+        });
     }
 }

@@ -39,7 +39,6 @@ public class GameManager {
         }
 
         this.players = players;
-        Listeners.clear();
 
         // Initialize positions
         positionMap.clear();
@@ -200,6 +199,6 @@ public class GameManager {
     }
 
     public int getPlayerTileIndex(Player player) {
-        return positionMap.get(player);
+        return positionMap.get(player.getDesignation());
     }
 }

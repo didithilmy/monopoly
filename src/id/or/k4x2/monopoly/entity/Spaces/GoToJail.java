@@ -1,7 +1,12 @@
 package id.or.k4x2.monopoly.entity.Spaces;
+/**
+ * if player go to jail
+ * @author Muhammad Yanza Hattari/18217043
+ */
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Space;
+import id.or.k4x2.monopoly.model.JailManager;
 
 public class GoToJail extends Space {
     /**
@@ -10,7 +15,7 @@ public class GoToJail extends Space {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        // TODO implement
+        JailManager.getInstance().addJail(player);
     }
 
     /**

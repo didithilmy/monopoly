@@ -1,5 +1,9 @@
 package id.or.k4x2.monopoly.model;
 
+/**
+ * @author Muhammad Yanza Hattari/18217043
+ */
+
 import id.or.k4x2.monopoly.entity.Dice;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.Listeners;
@@ -48,15 +52,17 @@ public class Context {
         // Shuffle dice
         dice.shuffle();
 
-        // TODO check if player is jailed
-        boolean playerJailed = false;
+        // check if player jailed
+        boolean playerJailed = JailManager.getInstance().checkJail(getCurrentPlayer());
 
         if(playerJailed) {
             // If player is in jail, check if double dice
             if(dice.isDoubleDice()) {
                 // Double dice, release from jail
-                // TODO release from jail
-                playerJailed = false;
+                JailManager.getInstance().removeJail(getCurrentPlayer());
+            }
+            else{
+                JailManager.getInstance().countTurn(getCurrentPlayer());
             }
         }
 

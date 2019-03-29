@@ -6,21 +6,15 @@
 package id.or.k4x2.monopoly.model;
 
 import id.or.k4x2.monopoly.entity.Player;
-import id.or.k4x2.monopoly.entity.Properties.Lot;
-import id.or.k4x2.monopoly.entity.Property;
-import id.or.k4x2.monopoly.entity.Tile;
-import id.or.k4x2.monopoly.listeners.GameStateListener;
-import id.or.k4x2.monopoly.listeners.Listeners;
-import id.or.k4x2.monopoly.listeners.PlayerMovedListener;
 
-import java.util.ArrayList;
+
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  *
- * @author ACER
+ * @author Claudia Renata Maharani, NIM 18217048
  */
 public class JailManager {
     private static JailManager instance = new JailManager();

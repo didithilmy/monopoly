@@ -2,6 +2,7 @@ package id.or.k4x2.monopoly.entity.Spaces;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Space;
+import id.or.k4x2.monopoly.model.GameManager;
 
 public class Taxation extends Space {
     /**
@@ -10,7 +11,8 @@ public class Taxation extends Space {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        // TODO implement
+        int tax = (int) (player.getMoney()*0.1);
+        GameManager.getInstance().deductMoney(player,tax);
     }
 
     /**

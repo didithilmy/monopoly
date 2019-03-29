@@ -31,7 +31,7 @@ public class Railroad extends Property {
             } else if (getNumRailroad(getOwner()) == 4) {
                 return (getBasePrice());
             } else {
-                return (getBasePrice());
+                throw new RuntimeException("Illegal noOfHouses");
             }
         }
     }

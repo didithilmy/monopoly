@@ -24,7 +24,6 @@ public class Lot extends Property {
      * @return rent price
      */
     public int getRentPrice() {
-        // TODO implement
         if (getOwner()!=null) {
             if (noOfHouses == 0) {
                 if (getNoGroupOwned(getOwner(), this.group)==group.getNo()) {
@@ -54,7 +53,6 @@ public class Lot extends Property {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        // TODO implement
         if (getOwner()!=null) {
             if (getOwner()==player) {
                 //TODO offer player to build house

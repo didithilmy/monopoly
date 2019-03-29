@@ -111,8 +111,6 @@ public class GameManager {
         Listeners.invokePlayerMoved(player, tileIndex);
     }
 
-    //TODO move player relative
-
     /**
      * Move player relative to current position
      * @param player Player entity

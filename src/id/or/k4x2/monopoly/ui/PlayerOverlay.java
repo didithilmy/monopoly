@@ -30,14 +30,14 @@ public class PlayerOverlay extends JPanel {
      * Attach player to the panel overlay
      * @param player
      */
-    public final void attachPlayer(Player player) {
+    public final void attachPlayer(Player.Designation player) {
         JLabel label = new JLabel("  ");
         label.setPreferredSize(new Dimension(12, 12));
         label.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-        label.setBackground(new Color(player.getDesignation().getColR(), player.getDesignation().getColG(), player.getDesignation().getColB()));
+        label.setBackground(new Color(player.getColR(), player.getColG(), player.getColB()));
         label.setOpaque(true);
         playerIndic.add(label);
-        labelMap.put(player.getDesignation(), label);
+        labelMap.put(player, label);
     }
 
     public final void detachPlayer(Player.Designation player) {

@@ -3,7 +3,12 @@ package id.or.k4x2.monopoly.model;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Properties.Lot;
 import id.or.k4x2.monopoly.entity.Property;
+import id.or.k4x2.monopoly.entity.Tile;
+import id.or.k4x2.monopoly.listeners.GameStateListener;
+import id.or.k4x2.monopoly.listeners.Listeners;
+import id.or.k4x2.monopoly.listeners.PlayerMovedListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +46,8 @@ public class GameManager {
             positionMap.put(player.getDesignation(), 0);
         }
 
-        // TODO call start game
+        // Call start game
+        Listeners.invokeStartGame();
     }
 
     /**
@@ -49,17 +55,60 @@ public class GameManager {
      */
     public void stop() {
         players = null;
-        // TODO call stop game
+
+        // Call stop game
+        Listeners.invokeFinishGame();
     }
 
     /**
      * Move player
      * @param player Player entity
-     * @param tileIndex tile index
+     * @param tileIndex destination tile index
      */
     public void movePlayer(Player player, int tileIndex) {
+        movePlayer(player, tileIndex, true);
+    }
+
+    /**
+     * Move player
+     * @param player Player entity
+     * @param tileIndex destination tile index
+     * @param checkPassGo if true, GameManager will check if the player moves pass Go. If it is, reward money.
+     */
+    public void movePlayer(Player player, int tileIndex, boolean checkPassGo) {
         assert players != null;
-        // TODO implement
+        assert players.contains(player);
+
+        Tile destinationTile = Tiles.getTile(tileIndex);
+
+        assert destinationTile != null;
+
+        // Get current tile
+        int currentPos = positionMap.get(player.getDesignation());
+        Tile currentTile = Tiles.getTile(currentPos);
+
+        assert currentTile != null;
+
+        // Call on player leaving
+        currentTile.onPlayerLeaving(player);
+
+        // Check if pass go
+        if(checkPassGo) {
+            if(tileIndex < currentPos) {
+                // If destination tile is less than current position, it passes through Go.
+                // Reward money
+                addMoney(player, 200);  // TODO don't hardcode
+            }
+        }
+
+        // Update positions map
+        positionMap.put(player.getDesignation(), tileIndex);
+
+        // Call on player landing on destination tile
+        destinationTile.onPlayerLanding(player);
+
+        // Call on player moved
+        Listeners.invokePlayerMoved(player, tileIndex);
     }
 
     //TODO move player relative
@@ -71,9 +120,15 @@ public class GameManager {
      */
     public void deductMoney(Player player, int nominal) {
         assert players != null;
+
+        int oldNominal = player.getMoney();
+
         player.deductMoney(nominal);
 
-        // TODO refresh UI
+        int newNominal = player.getMoney();
+
+        // Refresh UI
+        Listeners.invokeMoneyUpdated(player, oldNominal, newNominal);
     }
 
     /**
@@ -83,9 +138,15 @@ public class GameManager {
      */
     public void addMoney(Player player, int nominal) {
         assert players != null;
+
+        int oldNominal = player.getMoney();
+
         player.addMoney(nominal);
 
-        // TODO refresh UI
+        int newNominal = player.getMoney();
+
+        // Refresh UI
+        Listeners.invokeMoneyUpdated(player, oldNominal, newNominal);
     }
 
     /**
@@ -113,19 +174,33 @@ public class GameManager {
      * @param player Player entity
      * @param lot Lot entity
      */
-    public void constructHouse(Player player, Lot lot) {
-        // TODO implement
+    public void constructHouse(Player player, Lot lot) throws Lot.LotException {
+        // Check if the player is the lot owner
+        if(player == lot.getOwner()) {
+            lot.constructHouse();
+        }
     }
 
     /**
      * Check bankruptcy
-     * Iterate array of Players, remove any Player with negative money
+     * Iterate array of Players, flag any Player with negative money
      */
     public void checkBankruptcy() {
-        // TODO implement
+        for(Player player : players) {
+            if(player.getMoney() < 0) {
+                player.setBankrupted(true);
+
+                // Refresh UI
+                Listeners.invokePlayerBankrupted(player);
+            }
+        }
     }
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getPlayerTileIndex(Player player) {
+        return positionMap.get(player.getDesignation());
     }
 }

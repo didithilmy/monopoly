@@ -2,6 +2,7 @@ package id.or.k4x2.monopoly.model;
 
 import id.or.k4x2.monopoly.entity.Dice;
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.listeners.Listeners;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,35 @@ public class Context {
      * Roll the dice
      */
     public void rollDice() {
-        // TODO roll the dice
-        // TODO move player
+        // Exit if dice is rolled already
+        if(diceRolled) {
+            return;
+        }
+
+        // Shuffle dice
+        dice.shuffle();
+
+        // TODO check if player is jailed
+        boolean playerJailed = false;
+
+        if(playerJailed) {
+            // If player is in jail, check if double dice
+            if(dice.isDoubleDice()) {
+                // Double dice, release from jail
+                // TODO release from jail
+                playerJailed = false;
+            }
+        }
+
+        if(!playerJailed) {
+            // If player is not jailed, move is legal
+            Player player = getCurrentPlayer();
+            int currentPos = GameManager.getInstance().getPlayerTileIndex(player);
+            int newPos = (currentPos + dice.getSum()) % Tiles.getTiles().length;
+
+            // Move player
+            GameManager.getInstance().movePlayer(player, newPos);
+        }
 
         diceRolled = true;
     }
@@ -49,14 +77,31 @@ public class Context {
      * End the player turn
      */
     public void endTurn() {
-        // TODO end turn
+        List<Player> players = GameManager.getInstance().getPlayers();
 
-        int noOfPlayers = GameManager.getInstance().getPlayers().size();
+        // Publish end turn
+        Listeners.invokeEndTurn(players.get(currentPlayerIndex));
 
-        // Move to next player in array
-        currentPlayerIndex++;
-        if(currentPlayerIndex >= noOfPlayers) {
-            currentPlayerIndex = 0;
+        int noOfPlayers = players.size();
+        int i = 0;
+
+        // Search for non-bankrupted player
+        boolean found = false;
+        while(!found && i < noOfPlayers) {
+            currentPlayerIndex = (currentPlayerIndex + 1) % noOfPlayers;
+            found = !players.get(currentPlayerIndex).isBankrupted();
+            if(!found) {
+                i++;
+            }
+        }
+
+        if(i == noOfPlayers - 1) {
+            // N-1 players are all bankrupt. We have a winner!
+            // Publish winner
+            Listeners.invokeWinnerDeclared(players.get(currentPlayerIndex));
+        } else {
+            // Publish begin turn
+            Listeners.invokeBeginTurn(players.get(currentPlayerIndex));
         }
 
         diceRolled = false;

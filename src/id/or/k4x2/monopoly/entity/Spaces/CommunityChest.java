@@ -4,8 +4,8 @@ import id.or.k4x2.monopoly.entity.Cards.Card;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Space;
 import id.or.k4x2.monopoly.model.Cards;
+import id.or.k4x2.monopoly.model.DeckRandomizer;
 
-import java.util.Random;
 
 /**
  * Randomize community chest cards
@@ -18,10 +18,9 @@ public class CommunityChest extends Space {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        Card[] cards = Cards.getCommunityChestCards();
-        Random rand = new Random();
-        int n = rand.nextInt(cards.length-1);
-        Card card = cards[n];
+        DeckRandomizer<Card> cards = new DeckRandomizer<>(Cards.getCommunityChestCards());
+
+        Card card = cards.randomize();
         card.doAction(player);
     }
 

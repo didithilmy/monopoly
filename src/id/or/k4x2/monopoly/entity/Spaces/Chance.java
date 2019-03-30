@@ -4,8 +4,7 @@ import id.or.k4x2.monopoly.entity.Cards.Card;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Space;
 import id.or.k4x2.monopoly.model.Cards;
-
-import java.util.Random;
+import id.or.k4x2.monopoly.model.DeckRandomizer;
 
 /**
  * Randomize chance cards
@@ -18,10 +17,9 @@ public class Chance extends Space {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
-        Card[] cards = Cards.getChanceCards();
-        Random rand = new Random();
-        int n = rand.nextInt(cards.length - 1);
-        Card card = cards[n];
+        DeckRandomizer<Card> cards = new DeckRandomizer<>(Cards.getChanceCards());
+
+        Card card = cards.randomize();
         card.doAction(player);
     }
 

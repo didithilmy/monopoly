@@ -38,6 +38,8 @@ public class Context {
     public void start() {
         currentPlayerIndex = 0;
         diceRolled = false;
+
+        Listeners.invokeBeginTurn(null, getCurrentPlayer());
     }
 
     /**

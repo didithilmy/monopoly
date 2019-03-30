@@ -34,6 +34,7 @@ public class JailManager {
     //countJail 
     
     public void addJail(Player player){
+        System.out.println("Player " + player.getDesignation() + " added to jail");
         jailMap.put(player, 0);
         GameManager.getInstance().movePlayer(player, 10, false);
     }

@@ -99,12 +99,13 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
      * @param player Player entity
      */
     public void onBeginTurn(Player oldPlayer, Player player) {
-        PlayerDetailPane oldPane = windowMap.get(oldPlayer.getDesignation());
         PlayerDetailPane pane = windowMap.get(player.getDesignation());
 
         if(pane != null) {
-            if(oldPane != null)
+            if(oldPlayer != null) {
+                PlayerDetailPane oldPane = windowMap.get(oldPlayer.getDesignation());
                 oldPane.setPlayerTurn(false);
+            }
 
             pane.setPlayerTurn(true);
         }

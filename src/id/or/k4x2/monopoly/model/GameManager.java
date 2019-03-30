@@ -106,11 +106,11 @@ public class GameManager {
         // Update positions map
         positionMap.put(player.getDesignation(), tileIndex);
 
-        // Call on player landing on destination tile
-        destinationTile.onPlayerLanding(player);
-
         // Call on player moved
         Listeners.invokePlayerMoved(player, tileIndex);
+
+        // Call on player landing on destination tile
+        destinationTile.onPlayerLanding(player);
     }
 
     /**

@@ -11,7 +11,6 @@ import id.or.k4x2.monopoly.model.GameManager;
 */
 
 public class Utility extends Property {
-    
 
     public Utility(String name, int basePrice) {
         super(name, basePrice);
@@ -41,6 +40,8 @@ public class Utility extends Property {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
+        super.onPlayerLanding(player);
+
         if (getOwner()!= null){ 
             if (getOwner()!=player){
                 int nominal = getRentPrice();

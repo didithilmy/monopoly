@@ -14,12 +14,19 @@ import id.or.k4x2.monopoly.model.DeckRandomizer;
  * @author Muhammad Yanza Hattari/18217043
  */
 public class CommunityChest extends Space {
+
+    public CommunityChest() {
+        super("Dana Umum");
+    }
+
     /**
      * On Player Landing
      * This method is called when a player lands on the Tile
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
+        super.onPlayerLanding(player);
+
         DeckRandomizer<Card> cards = new DeckRandomizer<>(Cards.getCommunityChestCards());
 
         Card card = cards.randomize();

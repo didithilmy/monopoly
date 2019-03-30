@@ -13,12 +13,19 @@ import id.or.k4x2.monopoly.model.DeckRandomizer;
  * @author Muhammad Yanza Hattari/18217043
  */
 public class Chance extends Space {
+
+    public Chance() {
+        super("Kesempatan");
+    }
+
     /**
      * On Player Landing
      * This method is called when a player lands on the Tile
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
+        super.onPlayerLanding(player);
+
         DeckRandomizer<Card> cards = new DeckRandomizer<>(Cards.getChanceCards());
 
         Card card = cards.randomize();

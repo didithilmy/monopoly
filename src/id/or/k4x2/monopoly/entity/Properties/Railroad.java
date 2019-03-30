@@ -44,6 +44,8 @@ public class Railroad extends Property {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
+        super.onPlayerLanding(player);
+
         // cek dah ada owner atau belom, kalo belom tawarin. kalo dia mau beli kurangin duit dan set owner = player, kalo gamau return owner return null
         if (getOwner() != null) {
             if (getOwner() != player) {

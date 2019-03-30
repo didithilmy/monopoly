@@ -11,6 +11,7 @@ public abstract class Property extends Tile {
      * @param basePrice base sell price
      */
     public Property(String name, int basePrice) {
+        super(name);
         this.name = name;
         this.basePrice = basePrice;
         this.owner = null;

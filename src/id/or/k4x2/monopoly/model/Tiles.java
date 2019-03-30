@@ -39,11 +39,11 @@ public class Tiles {
         tiles[38] = new Taxation(); // Pajak Istimewa
 
         //Jail
-        tiles[10] = new FreeParking();  // Penjara
+        tiles[10] = new FreeParking("Penjara");  // Penjara
         tiles[30] = new GoToJail(); // Pergi ke Penjara
 
         // Free parking
-        tiles[20] = new FreeParking();
+        tiles[20] = new FreeParking("Parkir Bebas");
 
         // Brown block
         tiles[1] = new Lot("Monas", 0, Lot.Group.BROWN);

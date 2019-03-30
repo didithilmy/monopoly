@@ -55,6 +55,8 @@ public class Lot extends Property {
      * @param player Player entity
      */
     public void onPlayerLanding(Player player) {
+        super.onPlayerLanding(player);
+
         if (getOwner()!=null) {
             if (getOwner()==player) {
                 //TODO offer player to build house

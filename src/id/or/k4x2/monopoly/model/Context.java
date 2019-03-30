@@ -7,6 +7,8 @@ package id.or.k4x2.monopoly.model;
 import id.or.k4x2.monopoly.entity.Dice;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.Listeners;
+import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.GenericEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,11 @@ public class Context {
     private boolean diceRolled = false;
     private Dice dice;
 
+    private List<ContextEvent> eventLog;
+
     private Context() {
         dice = new Dice();
+        eventLog = new ArrayList<>();
     }
 
     /**
@@ -38,6 +43,7 @@ public class Context {
     public void start() {
         currentPlayerIndex = 0;
         diceRolled = false;
+        eventLog.clear();
 
         Listeners.invokeBeginTurn(null, getCurrentPlayer());
     }
@@ -53,6 +59,9 @@ public class Context {
 
         System.out.println("Dice is rolled");
 
+        // Clear event log
+        eventLog.clear();
+
         // Shuffle dice
         dice.shuffle();
 
@@ -64,11 +73,17 @@ public class Context {
             if(dice.isDoubleDice()) {
                 // Double dice, release from jail
                 JailManager.getInstance().removeJail(getCurrentPlayer());
+
+                // Log event
+                logEvent(new GenericEvent(getCurrentPlayer().getName() + " is released from jail because of double dice."));
             }
             else{
                 JailManager.getInstance().countTurn(getCurrentPlayer());
             }
         }
+
+        // Re check player jailed
+        playerJailed = JailManager.getInstance().checkJail(getCurrentPlayer());
 
         if(!playerJailed) {
             // If player is not jailed, move is legal
@@ -130,5 +145,10 @@ public class Context {
 
     public Dice getDice() {
         return dice;
+    }
+
+    public void logEvent(ContextEvent event) {
+        System.out.println("Event logged: " + event);
+        eventLog.add(event);
     }
 }

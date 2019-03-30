@@ -2,6 +2,8 @@ package id.or.k4x2.monopoly.entity.Properties;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
+import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
 import id.or.k4x2.monopoly.model.GameManager;
 
 /*
@@ -45,7 +47,12 @@ public class Railroad extends Property {
         // cek dah ada owner atau belom, kalo belom tawarin. kalo dia mau beli kurangin duit dan set owner = player, kalo gamau return owner return null
         if (getOwner() != null) {
             if (getOwner() != player) {
-                GameManager.getInstance().deductMoney(player,getRentPrice());
+                int nominal = getRentPrice();
+                GameManager.getInstance().deductMoney(player, nominal);
+
+                // Log event
+                Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " pays Rp " + nominal + " to " + getOwner().getName() + " in rent"));
+
                 GameManager.getInstance().checkBankruptcy();
             }
         }

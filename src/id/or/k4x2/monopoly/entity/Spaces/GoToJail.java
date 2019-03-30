@@ -6,6 +6,8 @@ package id.or.k4x2.monopoly.entity.Spaces;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Space;
+import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.ContextEvents.GenericEvent;
 import id.or.k4x2.monopoly.model.JailManager;
 
 public class GoToJail extends Space {
@@ -16,6 +18,9 @@ public class GoToJail extends Space {
      */
     public void onPlayerLanding(Player player) {
         JailManager.getInstance().addJail(player);
+
+        // Log event
+        Context.getInstance().logEvent(new GenericEvent(player.getName() + " goes to jail"));
     }
 
     /**

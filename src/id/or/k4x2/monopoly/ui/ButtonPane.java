@@ -1,5 +1,6 @@
 package id.or.k4x2.monopoly.ui;
 
+import id.or.k4x2.monopoly.entity.Dice;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.ContextListener;
 import id.or.k4x2.monopoly.listeners.Listeners;
@@ -15,6 +16,9 @@ public class ButtonPane implements ContextListener {
     private JButton endTurnButton;
     private JButton buyLotButton;
     private JButton buildAHouseButton;
+    private JButton postBailButton;
+    private JLabel die1;
+    private JLabel die2;
 
     public JPanel getPanel() {
         Listeners.addContextListener(this);
@@ -64,6 +68,7 @@ public class ButtonPane implements ContextListener {
      * @param player Player entity
      */
     public void onBeginTurn(Player oldPlayer, Player player) {
+        endTurnButton.setEnabled(false);
         rollDiceButton.setEnabled(true);
     }
 
@@ -90,5 +95,11 @@ public class ButtonPane implements ContextListener {
     public void onDiceRolled(Player player) {
         rollDiceButton.setEnabled(false);
         endTurnButton.setEnabled(true);
+
+        // Update UI
+        Dice dice = Context.getInstance().getDice();
+
+        die1.setText(String.valueOf(dice.getDie1()));
+        die2.setText(String.valueOf(dice.getDie2()));
     }
 }

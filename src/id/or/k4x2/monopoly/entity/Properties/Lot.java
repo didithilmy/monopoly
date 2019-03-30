@@ -2,6 +2,8 @@ package id.or.k4x2.monopoly.entity.Properties;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
+import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
 import id.or.k4x2.monopoly.model.GameManager;
 
 /**
@@ -56,9 +58,13 @@ public class Lot extends Property {
         if (getOwner()!=null) {
             if (getOwner()==player) {
                 //TODO offer player to build house
-            }
-            else {
-                GameManager.getInstance().deductMoney(player,getRentPrice());
+            } else {
+                int nominal = getRentPrice();
+                GameManager.getInstance().deductMoney(player, nominal);
+
+                // Log event
+                Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " pays Rp " + nominal + " to " + getOwner().getName() + " in rent"));
+
                 GameManager.getInstance().checkBankruptcy();
             }
         }

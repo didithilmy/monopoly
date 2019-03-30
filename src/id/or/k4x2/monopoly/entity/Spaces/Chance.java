@@ -4,6 +4,8 @@ import id.or.k4x2.monopoly.entity.Cards.Card;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Space;
 import id.or.k4x2.monopoly.model.Cards;
+import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.ContextEvents.CardEvent;
 import id.or.k4x2.monopoly.model.DeckRandomizer;
 
 /**
@@ -20,6 +22,11 @@ public class Chance extends Space {
         DeckRandomizer<Card> cards = new DeckRandomizer<>(Cards.getChanceCards());
 
         Card card = cards.randomize();
+
+        // Log event
+        Context.getInstance().logEvent(new CardEvent(true, card.getName(), card.getDesc()));
+
+        // Do action
         card.doAction(player);
     }
 

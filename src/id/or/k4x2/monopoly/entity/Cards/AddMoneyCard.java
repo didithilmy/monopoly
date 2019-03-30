@@ -1,6 +1,8 @@
 package id.or.k4x2.monopoly.entity.Cards;
 
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
 import id.or.k4x2.monopoly.model.GameManager;
 
 /**
@@ -25,5 +27,8 @@ public class AddMoneyCard extends Card {
 
     public void doAction(Player player) {
         GameManager.getInstance().addMoney(player,addmoney);
+
+        // Log event
+        Context.getInstance().logEvent(new MoneyEvent(true, addmoney, player.getName() + " gets Rp " + addmoney));
     }
 }

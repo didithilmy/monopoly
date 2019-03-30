@@ -17,7 +17,7 @@ public abstract class Property extends Tile {
     }
 
     /**
-     * Get rent price
+     * Get rent prices
      * @return rent price
      */
     public abstract int getRentPrice();

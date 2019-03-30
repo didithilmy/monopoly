@@ -37,6 +37,5 @@ public class Main {
 
         GameManager.getInstance().start(players);
         Context.getInstance().start();
-        Context.getInstance().rollDice();
     }
 }

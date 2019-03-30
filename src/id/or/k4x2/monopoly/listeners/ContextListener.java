@@ -8,9 +8,10 @@ import id.or.k4x2.monopoly.entity.Player;
 public interface ContextListener {
     /**
      * On begin turn
+     * @param previousPlayer Player entity
      * @param player Player entity
      */
-    public void onBeginTurn(Player player);
+    public void onBeginTurn(Player previousPlayer, Player player);
 
     /**
      * On turn ended

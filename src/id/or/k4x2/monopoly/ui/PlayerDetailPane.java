@@ -11,13 +11,13 @@ public class PlayerDetailPane {
     private JPanel paneColor;
     private JLabel playerName;
     private JLabel playerMoney;
+    private static Border MARGIN = new EmptyBorder(8, 8, 8, 8);
+    private static Border NORMAL_BORDER = new CompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1), MARGIN);
+    private static Border ACTIVE_BORDER = new CompoundBorder(BorderFactory.createLineBorder(Color.BLUE, 3), MARGIN);
 
     public PlayerDetailPane() {
         super();
-
-        Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
-        Border margin = new EmptyBorder(8, 8, 8, 8);
-        panel.setBorder(new CompoundBorder(border, margin));
+        panel.setBorder(NORMAL_BORDER);
     }
 
     public JPanel getPanel() {
@@ -34,5 +34,13 @@ public class PlayerDetailPane {
 
     public JLabel getPlayerMoney() {
         return playerMoney;
+    }
+
+    public void setPlayerTurn(boolean isTurn) {
+        if(isTurn) {
+            panel.setBorder(ACTIVE_BORDER);
+        } else {
+            panel.setBorder(NORMAL_BORDER);
+        }
     }
 }

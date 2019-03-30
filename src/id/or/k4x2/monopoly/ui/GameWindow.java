@@ -1,6 +1,7 @@
 package id.or.k4x2.monopoly.ui;
 
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.listeners.ContextListener;
 import id.or.k4x2.monopoly.listeners.GameStateListener;
 import id.or.k4x2.monopoly.listeners.Listeners;
 import id.or.k4x2.monopoly.listeners.PlayerAttributesListener;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GameWindow implements GameStateListener, PlayerAttributesListener {
+public class GameWindow implements GameStateListener, PlayerAttributesListener, ContextListener {
     private JPanel panel;
     private JPanel playerPane;
     private JPanel boardPane;
@@ -25,6 +26,7 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener {
         super();
         Listeners.addGameStateListener(this);
         Listeners.addPlayerAttributesListener(this);
+        Listeners.addContextListener(this);
 
         windowMap = new HashMap<>();
 
@@ -88,6 +90,47 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener {
      * @param player Player entity
      */
     public void onPlayerBankrupted(Player player) {
+
+    }
+
+    /**
+     * On begin turn
+     * @param oldPlayer Player entity
+     * @param player Player entity
+     */
+    public void onBeginTurn(Player oldPlayer, Player player) {
+        PlayerDetailPane oldPane = windowMap.get(oldPlayer.getDesignation());
+        PlayerDetailPane pane = windowMap.get(player.getDesignation());
+
+        if(pane != null) {
+            if(oldPane != null)
+                oldPane.setPlayerTurn(false);
+
+            pane.setPlayerTurn(true);
+        }
+    }
+
+    /**
+     * On turn ended
+     * @param player Player entity
+     */
+    public void onTurnEnded(Player player) {
+
+    }
+
+    /**
+     * On winner declared
+     * @param player Player entity
+     */
+    public void onWinnerDeclared(Player player) {
+        // TODO set UI
+    }
+
+    /**
+     * On dice rolled
+     * @param player Player entity
+     */
+    public void onDiceRolled(Player player) {
 
     }
 }

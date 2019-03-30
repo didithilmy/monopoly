@@ -90,7 +90,8 @@ public class Context {
         List<Player> players = GameManager.getInstance().getPlayers();
 
         // Publish end turn
-        Listeners.invokeEndTurn(players.get(currentPlayerIndex));
+        Player oldPlayer = players.get(currentPlayerIndex);
+        Listeners.invokeEndTurn(oldPlayer);
 
         int noOfPlayers = players.size();
         int i = 0;
@@ -111,7 +112,7 @@ public class Context {
             Listeners.invokeWinnerDeclared(players.get(currentPlayerIndex));
         } else {
             // Publish begin turn
-            Listeners.invokeBeginTurn(players.get(currentPlayerIndex));
+            Listeners.invokeBeginTurn(oldPlayer, players.get(currentPlayerIndex));
         }
 
         diceRolled = false;

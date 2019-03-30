@@ -84,9 +84,9 @@ public class Listeners {
         }
     }
 
-    public static void invokeBeginTurn(Player player) {
+    public static void invokeBeginTurn(Player oldPlayer, Player player) {
         for(ContextListener listener : contextListeners) {
-            listener.onBeginTurn(player);
+            listener.onBeginTurn(oldPlayer, player);
         }
     }
 

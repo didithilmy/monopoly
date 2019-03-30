@@ -60,9 +60,10 @@ public class ButtonPane implements ContextListener {
 
     /**
      * On begin turn
+     * @param oldPlayer Player entity
      * @param player Player entity
      */
-    public void onBeginTurn(Player player) {
+    public void onBeginTurn(Player oldPlayer, Player player) {
         rollDiceButton.setEnabled(true);
     }
 

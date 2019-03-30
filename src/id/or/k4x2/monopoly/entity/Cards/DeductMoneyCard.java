@@ -29,6 +29,6 @@ public class DeductMoneyCard extends Card {
         GameManager.getInstance().deductMoney(player,dedmoney);
 
         // Log event
-        Context.getInstance().logEvent(new MoneyEvent(false, dedmoney, player.getName() + " loses Rp " + dedmoney));
+        Context.getInstance().logEvent(new MoneyEvent(false, dedmoney, player.getName() + " mengeluarkan Rp " + dedmoney));
     }
 }

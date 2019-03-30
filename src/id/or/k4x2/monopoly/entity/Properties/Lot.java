@@ -65,7 +65,7 @@ public class Lot extends Property {
                 GameManager.getInstance().deductMoney(player, nominal);
 
                 // Log event
-                Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " pays Rp " + nominal + " to " + getOwner().getName() + " in rent"));
+                Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " membayar Rp " + nominal + " kepada " + getOwner().getName() + " untuk biaya sewa"));
 
                 GameManager.getInstance().checkBankruptcy();
             }

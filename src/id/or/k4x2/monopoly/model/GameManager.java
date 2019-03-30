@@ -7,6 +7,7 @@ import id.or.k4x2.monopoly.entity.Tile;
 import id.or.k4x2.monopoly.listeners.GameStateListener;
 import id.or.k4x2.monopoly.listeners.Listeners;
 import id.or.k4x2.monopoly.listeners.PlayerMovedListener;
+import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,6 +99,9 @@ public class GameManager {
                 // If destination tile is less than current position, it passes through Go.
                 // Reward money
                 addMoney(player, 200);  // TODO don't hardcode
+
+                // Log event
+                Context.getInstance().logEvent(new MoneyEvent(true, 200, player.getName() + " mendapat Rp 200 karena melewati Mulai"));
             }
         }
 

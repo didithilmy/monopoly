@@ -25,8 +25,7 @@ public class Taxation extends Space {
         GameManager.getInstance().deductMoney(player,tax);
 
         // Log event
-        Context.getInstance().logEvent(new GenericEvent(player.getName() + " landed on tax"));
-        Context.getInstance().logEvent(new MoneyEvent(false, tax, player.getName() + " pays 10% income tax"));
+        Context.getInstance().logEvent(new MoneyEvent(false, tax, player.getName() + " membayar Pajak Istimewa 10%"));
     }
 
     /**

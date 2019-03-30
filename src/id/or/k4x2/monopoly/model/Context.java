@@ -75,7 +75,7 @@ public class Context {
                 JailManager.getInstance().removeJail(getCurrentPlayer());
 
                 // Log event
-                logEvent(new GenericEvent(getCurrentPlayer().getName() + " is released from jail because of double dice."));
+                logEvent(new GenericEvent(getCurrentPlayer().getName() + " dibebaskan dari Penjara karena mendapat angka dadu ganda."));
             }
             else{
                 JailManager.getInstance().countTurn(getCurrentPlayer());

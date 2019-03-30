@@ -5,9 +5,11 @@ import id.or.k4x2.monopoly.listeners.*;
 import id.or.k4x2.monopoly.model.ContextEvents.CardEvent;
 import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
 import id.or.k4x2.monopoly.model.ContextEvents.GenericEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
 import id.or.k4x2.monopoly.model.GameManager;
 import id.or.k4x2.monopoly.ui.ContextEvents.UICardEvent;
 import id.or.k4x2.monopoly.ui.ContextEvents.UIGenericEvent;
+import id.or.k4x2.monopoly.ui.ContextEvents.UIMoneyEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -164,6 +166,13 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
             UIGenericEvent uiGenericEvent = new UIGenericEvent(genericEvent.getEvent());
 
             eventsPane.add(uiGenericEvent.getPanel());
+            eventsPane.repaint();
+        } else if(event instanceof MoneyEvent) {
+            // MoneyEvent
+            MoneyEvent moneyEvent = (MoneyEvent) event;
+            UIMoneyEvent uiMoneyEvent = new UIMoneyEvent(moneyEvent.isMoneyAdded(), moneyEvent.getNominal(), moneyEvent.getMessage());
+
+            eventsPane.add(uiMoneyEvent.getPanel());
             eventsPane.repaint();
         } else {
             // TODO change

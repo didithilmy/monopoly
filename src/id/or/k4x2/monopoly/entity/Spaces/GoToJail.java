@@ -27,7 +27,7 @@ public class GoToJail extends Space {
         JailManager.getInstance().addJail(player);
 
         // Log event
-        Context.getInstance().logEvent(new GenericEvent(player.getName() + " goes to jail"));
+        Context.getInstance().logEvent(new GenericEvent(player.getName() + " masuk penjara"));
     }
 
     /**

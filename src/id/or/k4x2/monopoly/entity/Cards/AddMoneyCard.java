@@ -29,6 +29,6 @@ public class AddMoneyCard extends Card {
         GameManager.getInstance().addMoney(player,addmoney);
 
         // Log event
-        Context.getInstance().logEvent(new MoneyEvent(true, addmoney, player.getName() + " gets Rp " + addmoney));
+        Context.getInstance().logEvent(new MoneyEvent(true, addmoney, player.getName() + " mendapat Rp " + addmoney));
     }
 }

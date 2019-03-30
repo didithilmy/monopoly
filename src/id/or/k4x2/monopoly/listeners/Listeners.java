@@ -1,6 +1,7 @@
 package id.or.k4x2.monopoly.listeners;
 
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.model.Context;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -98,6 +99,12 @@ public class Listeners {
     public static void invokeWinnerDeclared(Player player) {
         for(ContextListener listener : contextListeners) {
             listener.onWinnerDeclared(player);
+        }
+    }
+
+    public static void invokeDiceRolled(Player player) {
+        for(ContextListener listener : contextListeners) {
+            listener.onDiceRolled(player);
         }
     }
 }

@@ -23,4 +23,10 @@ public interface ContextListener {
      * @param player Player entity
      */
     public void onWinnerDeclared(Player player);
+
+    /**
+     * On dice rolled
+     * @param player Player entity
+     */
+    public void onDiceRolled(Player player);
 }

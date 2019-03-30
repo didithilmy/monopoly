@@ -101,6 +101,8 @@ public class GameManager {
             }
         }
 
+        System.out.println("Player moved to " + tileIndex);
+
         // Update positions map
         positionMap.put(player.getDesignation(), tileIndex);
 

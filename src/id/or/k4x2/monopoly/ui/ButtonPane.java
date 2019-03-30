@@ -1,8 +1,15 @@
 package id.or.k4x2.monopoly.ui;
 
-import javax.swing.*;
+import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.listeners.ContextListener;
+import id.or.k4x2.monopoly.listeners.Listeners;
+import id.or.k4x2.monopoly.model.Context;
 
-public class ButtonPane {
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ButtonPane implements ContextListener {
     private JPanel panel;
     private JButton rollDiceButton;
     private JButton endTurnButton;
@@ -10,6 +17,28 @@ public class ButtonPane {
     private JButton buildAHouseButton;
 
     public JPanel getPanel() {
+        Listeners.addContextListener(this);
+
+        endTurnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // End turn
+                Context.getInstance().endTurn();
+
+                // Disable button
+                endTurnButton.setEnabled(false);
+            }
+        });
+
+        rollDiceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Context.getInstance().rollDice();
+
+                rollDiceButton.setEnabled(false);
+            }
+        });
+
         return panel;
     }
 
@@ -27,5 +56,38 @@ public class ButtonPane {
 
     public JButton getBuildAHouseButton() {
         return buildAHouseButton;
+    }
+
+    /**
+     * On begin turn
+     * @param player Player entity
+     */
+    public void onBeginTurn(Player player) {
+        rollDiceButton.setEnabled(true);
+    }
+
+    /**
+     * On turn ended
+     * @param player Player entity
+     */
+    public void onTurnEnded(Player player) {
+        endTurnButton.setEnabled(false);
+    }
+
+    /**
+     * On winner declared
+     * @param player Player entity
+     */
+    public void onWinnerDeclared(Player player) {
+        // TODO set UI
+    }
+
+    /**
+     * On dice rolled
+     * @param player Player entity
+     */
+    public void onDiceRolled(Player player) {
+        rollDiceButton.setEnabled(false);
+        endTurnButton.setEnabled(true);
     }
 }

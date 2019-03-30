@@ -217,16 +217,21 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener {
      * @param tileIndex the index of the destination tile
      */
     public void onPlayerMoved(Player player, int tileIndex) {
-        SwingUtilities.invokeLater(new Runnable() {
+        System.out.println("BoardWindow: player moved to " + tileIndex);
+        /*SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Detach player from old position
-                int oldPosition = positionsMap.get(player.getDesignation());
-                ((PlayerOverlay) tiles[oldPosition].getComponent(0)).detachPlayer(player.getDesignation());
 
-                // Attach player to new position
-                ((PlayerOverlay) tiles[tileIndex].getComponent(0)).attachPlayer(player.getDesignation());
             }
-        });
+        });*/
+
+        // Detach player from old position
+        int oldPosition = positionsMap.get(player.getDesignation());
+        ((PlayerOverlay) tiles[oldPosition].getComponent(0)).detachPlayer(player.getDesignation());
+
+        // Attach player to new position
+        ((PlayerOverlay) tiles[tileIndex].getComponent(0)).attachPlayer(player.getDesignation());
+
+        positionsMap.put(player.getDesignation(), tileIndex);
     }
 }

@@ -49,6 +49,8 @@ public class Context {
             return;
         }
 
+        System.out.println("Dice is rolled");
+
         // Shuffle dice
         dice.shuffle();
 
@@ -75,6 +77,8 @@ public class Context {
             // Move player
             GameManager.getInstance().movePlayer(player, newPos);
         }
+
+        Listeners.invokeDiceRolled(getCurrentPlayer());
 
         diceRolled = true;
     }

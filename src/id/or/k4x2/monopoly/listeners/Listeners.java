@@ -2,6 +2,7 @@ package id.or.k4x2.monopoly.listeners;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,12 +15,14 @@ public class Listeners {
     private static Set<PlayerMovedListener> playerMovedListeners = new HashSet<>();
     private static Set<PlayerAttributesListener> playerAttributesListeners = new HashSet<>();
     private static Set<ContextListener> contextListeners = new HashSet<>();
+    private static Set<ContextEventListener> contextEventListeners = new HashSet<>();
 
     public static void clear() {
         gameStateListeners.clear();
         playerMovedListeners.clear();
         playerAttributesListeners.clear();
         contextListeners.clear();
+        contextEventListeners.clear();
     }
 
     public static void addGameStateListener(GameStateListener listener) {
@@ -52,6 +55,15 @@ public class Listeners {
 
     public static void removeContextListener(ContextListener listener) {
         contextListeners.remove(listener);
+    }
+
+
+    public static void addContextEventListener(ContextEventListener listener) {
+        contextEventListeners.add(listener);
+    }
+
+    public static void removeContextEventListener(ContextEventListener listener) {
+        contextEventListeners.remove(listener);
     }
 
     public static void invokeStartGame() {
@@ -105,6 +117,12 @@ public class Listeners {
     public static void invokeDiceRolled(Player player) {
         for(ContextListener listener : contextListeners) {
             listener.onDiceRolled(player);
+        }
+    }
+
+    public static void invokeContextEventLogged(ContextEvent event) {
+        for(ContextEventListener listener : contextEventListeners) {
+            listener.onEventLogged(event);
         }
     }
 }

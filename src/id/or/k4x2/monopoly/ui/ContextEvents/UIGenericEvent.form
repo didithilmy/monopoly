@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="id.or.k4x2.monopoly.ui.ContextEvents.UIGenericEvent">
+  <grid id="27dc6" binding="panel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="264" height="40"/>
+    </constraints>
+    <properties>
+      <background color="-1"/>
+    </properties>
+    <border type="empty">
+      <size top="8" left="8" bottom="8" right="8"/>
+    </border>
+    <children>
+      <component id="f4fc" class="javax.swing.JLabel" binding="lblEvent">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

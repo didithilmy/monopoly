@@ -150,5 +150,6 @@ public class Context {
     public void logEvent(ContextEvent event) {
         System.out.println("Event logged: " + event);
         eventLog.add(event);
+        Listeners.invokeContextEventLogged(event);
     }
 }

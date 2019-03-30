@@ -1,11 +1,13 @@
 package id.or.k4x2.monopoly.ui;
 
 import id.or.k4x2.monopoly.entity.Player;
-import id.or.k4x2.monopoly.listeners.ContextListener;
-import id.or.k4x2.monopoly.listeners.GameStateListener;
-import id.or.k4x2.monopoly.listeners.Listeners;
-import id.or.k4x2.monopoly.listeners.PlayerAttributesListener;
+import id.or.k4x2.monopoly.listeners.*;
+import id.or.k4x2.monopoly.model.ContextEvents.CardEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.GenericEvent;
 import id.or.k4x2.monopoly.model.GameManager;
+import id.or.k4x2.monopoly.ui.ContextEvents.UICardEvent;
+import id.or.k4x2.monopoly.ui.ContextEvents.UIGenericEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,11 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GameWindow implements GameStateListener, PlayerAttributesListener, ContextListener {
+public class GameWindow implements GameStateListener, PlayerAttributesListener, ContextListener, ContextEventListener {
     private JPanel panel;
     private JPanel playerPane;
     private JPanel boardPane;
     private JPanel dicePane;
+    private JPanel eventsPane;
 
     private Map<Player.Designation, PlayerDetailPane> windowMap;
 
@@ -27,13 +30,17 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
         Listeners.addGameStateListener(this);
         Listeners.addPlayerAttributesListener(this);
         Listeners.addContextListener(this);
+        Listeners.addContextEventListener(this);
 
         windowMap = new HashMap<>();
 
-        GridLayout layout = new GridLayout(6, 1);
+        GridLayout layout = new GridLayout(0, 1);
         layout.setVgap(8);
         playerPane.setLayout(layout);
         playerPane.setBorder(new EmptyBorder(8, 8, 8, 8));
+
+        BoxLayout boxLayout = new BoxLayout(eventsPane, BoxLayout.Y_AXIS);
+        eventsPane.setLayout(boxLayout);
     }
 
     public JPanel getPanel() {
@@ -109,6 +116,10 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
 
             pane.setPlayerTurn(true);
         }
+
+        // Clear event pane
+        eventsPane.removeAll();
+        eventsPane.repaint();
     }
 
     /**
@@ -133,5 +144,35 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
      */
     public void onDiceRolled(Player player) {
 
+    }
+
+    /**
+     * On context event logged
+     * @param event Event entity
+     */
+    public void onEventLogged(ContextEvent event) {
+        if(event instanceof CardEvent) {
+            // CardEvent
+            CardEvent cardEvent = (CardEvent) event;
+            UICardEvent uiCardEvent = new UICardEvent(cardEvent.isChance(), cardEvent.getCardName(), cardEvent.getCardDescription());
+
+            eventsPane.add(uiCardEvent.getPanel());
+            eventsPane.repaint();
+        } else if(event instanceof GenericEvent) {
+            // GenericEvent
+            GenericEvent genericEvent = (GenericEvent) event;
+            UIGenericEvent uiGenericEvent = new UIGenericEvent(genericEvent.getEvent());
+
+            eventsPane.add(uiGenericEvent.getPanel());
+            eventsPane.repaint();
+        } else {
+            // TODO change
+            UIGenericEvent uiGenericEvent = new UIGenericEvent(event.toString());
+
+            eventsPane.add(uiGenericEvent.getPanel());
+            eventsPane.repaint();
+        }
+
+        eventsPane.add(Box.createRigidArea(new Dimension(0,8)));
     }
 }

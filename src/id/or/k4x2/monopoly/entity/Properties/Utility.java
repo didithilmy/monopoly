@@ -4,6 +4,7 @@ import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
 import id.or.k4x2.monopoly.model.Context;
 import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.PropertyUnownedEvent;
 import id.or.k4x2.monopoly.model.GameManager;
 /**
  * @author Claudia Renata, 18217048
@@ -53,7 +54,10 @@ public class Utility extends Property {
 
                 GameManager.getInstance().checkBankruptcy();
             }
-        }               
+        } else {
+            // No owner, log event
+            Context.getInstance().logEvent(new PropertyUnownedEvent(this));
+        }
     }
 
     /**

@@ -3,7 +3,9 @@ package id.or.k4x2.monopoly.entity.Properties;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Property;
 import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.ContextEvents.GroupOwnedEvent;
 import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.PropertyUnownedEvent;
 import id.or.k4x2.monopoly.model.GameManager;
 
 /**
@@ -58,8 +60,13 @@ public class Lot extends Property {
         super.onPlayerLanding(player);
 
         if (getOwner()!=null) {
-            if (getOwner()==player) {
+            if (getOwner() == player) {
                 //TODO offer player to build house
+                // Check if player owns the group
+                if(getNoGroupOwned(getOwner(), this.group)==group.getNo()) {
+                    // Log event
+                    Context.getInstance().logEvent(new GroupOwnedEvent(this));
+                }
             } else {
                 int nominal = getRentPrice();
                 GameManager.getInstance().deductMoney(player, nominal);
@@ -69,6 +76,9 @@ public class Lot extends Property {
 
                 GameManager.getInstance().checkBankruptcy();
             }
+        } else {
+            // No owner, log event
+            Context.getInstance().logEvent(new PropertyUnownedEvent(this));
         }
     }
 
@@ -116,6 +126,10 @@ public class Lot extends Property {
         else {
             throw new LotException(LotException.Error.GROUP_NOT_OWNED);
         }
+    }
+
+    public int getNoOfHouses() {
+        return noOfHouses;
     }
 
     /**

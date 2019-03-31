@@ -9,6 +9,7 @@ import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.Listeners;
 import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
 import id.or.k4x2.monopoly.model.ContextEvents.GenericEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.JailedEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,11 +129,23 @@ public class Context {
             // Publish winner
             Listeners.invokeWinnerDeclared(players.get(currentPlayerIndex));
         } else {
-            // Publish begin turn
-            Listeners.invokeBeginTurn(oldPlayer, players.get(currentPlayerIndex));
+            beginTurn(oldPlayer);
         }
 
         diceRolled = false;
+    }
+
+    private void beginTurn(Player oldPlayer) {
+        // Publish begin turn
+        Listeners.invokeBeginTurn(oldPlayer, getCurrentPlayer());
+
+        // Check if in jail
+        boolean playerJailed = JailManager.getInstance().checkJail(getCurrentPlayer());
+
+        if(playerJailed) {
+            // Log event
+            Context.getInstance().logEvent(new JailedEvent());
+        }
     }
 
     /**

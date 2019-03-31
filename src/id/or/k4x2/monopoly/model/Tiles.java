@@ -35,8 +35,8 @@ public class Tiles {
         tiles[35] = new Railroad("Pelabuhan Belawan", 0);  // Pelabuhan Belawan
 
         // Taxes
-        tiles[4] = new Taxation();  // Pajak Jalan
-        tiles[38] = new Taxation(); // Pajak Istimewa
+        tiles[4] = new Taxation("Pajak Jalan");  // Pajak Jalan
+        tiles[38] = new Taxation("Pajak Istimewa"); // Pajak Istimewa
 
         //Jail
         tiles[10] = new FreeParking("Penjara");  // Penjara

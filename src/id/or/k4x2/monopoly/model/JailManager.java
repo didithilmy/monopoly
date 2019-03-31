@@ -6,7 +6,7 @@
 package id.or.k4x2.monopoly.model;
 
 import id.or.k4x2.monopoly.entity.Player;
-
+import id.or.k4x2.monopoly.model.ContextEvents.GenericEvent;
 
 
 import java.util.HashMap;
@@ -47,6 +47,8 @@ public class JailManager {
        int turn=jailMap.get(player); 
        if (turn==3){
            removeJail(player);
+           Context.getInstance().logEvent(new GenericEvent(player.getName() + " dibebaskan dari Penjara karena sudah 3 giliran."));
+
        } else {
            jailMap.put(player,turn+1); 
        }

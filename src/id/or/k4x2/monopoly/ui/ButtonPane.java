@@ -15,8 +15,6 @@ public class ButtonPane implements ContextListener {
     private JButton rollDiceButton;
     private JButton endTurnButton;
     private JButton buyLotButton;
-    private JButton buildAHouseButton;
-    private JButton postBailButton;
     private JLabel die1;
     private JLabel die2;
 
@@ -56,10 +54,6 @@ public class ButtonPane implements ContextListener {
 
     public JButton getBuyLotButton() {
         return buyLotButton;
-    }
-
-    public JButton getBuildAHouseButton() {
-        return buildAHouseButton;
     }
 
     /**

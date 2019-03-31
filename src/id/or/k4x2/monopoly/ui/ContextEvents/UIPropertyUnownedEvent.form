@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="id.or.k4x2.monopoly.ui.ContextEvents.UIPropertyUnownedEvent">
+  <grid id="27dc6" binding="panel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="97"/>
+    </constraints>
+    <properties>
+      <background color="-1"/>
+    </properties>
+    <border type="empty">
+      <size top="8" left="8" bottom="8" right="8"/>
+    </border>
+    <children>
+      <component id="be603" class="javax.swing.JLabel" binding="lblPropertyName">
+        <constraints border-constraint="North"/>
+        <properties>
+          <font size="18"/>
+          <text value="Property Name"/>
+        </properties>
+      </component>
+      <component id="24978" class="javax.swing.JLabel" binding="lblDesc">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <text value="Beli PropertyName seharga Rp 200!"/>
+        </properties>
+      </component>
+      <grid id="47b53" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties>
+          <background color="-1"/>
+        </properties>
+        <border type="empty">
+          <size top="16" left="0" bottom="0" right="0"/>
+        </border>
+        <children>
+          <component id="29e6f" class="javax.swing.JButton" binding="btnBuy">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value="Beli PropertyName"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

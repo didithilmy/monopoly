@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="id.or.k4x2.monopoly.ui.ContextEvents.UILotGroupOwned">
+  <grid id="27dc6" binding="panel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="354" height="92"/>
+    </constraints>
+    <properties>
+      <background color="-1"/>
+    </properties>
+    <border type="empty">
+      <size top="8" left="8" bottom="8" right="8"/>
+    </border>
+    <children>
+      <component id="4854b" class="javax.swing.JLabel">
+        <constraints border-constraint="North"/>
+        <properties>
+          <font size="14"/>
+          <text value="Bangun rumah impian kamu!"/>
+        </properties>
+      </component>
+      <grid id="774ef" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties>
+          <background color="-1"/>
+        </properties>
+        <border type="empty">
+          <size top="16" left="0" bottom="0" right="0"/>
+        </border>
+        <children>
+          <component id="4d0db" class="javax.swing.JButton" binding="btnBuildHouse">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value="Bangun sebuah rumah"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="b294e" class="javax.swing.JLabel" binding="lblDesc">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <text value="Bangun rumah impian kamu hanya dengan Rp200"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

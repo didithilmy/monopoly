@@ -9,8 +9,8 @@ import id.or.k4x2.monopoly.model.GameManager;
 
 public class Taxation extends Space {
 
-    public Taxation() {
-        super("Pajak Istimewa");
+    public Taxation(String name) {
+        super(name);
     }
 
     /**
@@ -25,7 +25,7 @@ public class Taxation extends Space {
         GameManager.getInstance().deductMoney(player,tax);
 
         // Log event
-        Context.getInstance().logEvent(new MoneyEvent(false, tax, player.getName() + " membayar Pajak Istimewa 10%"));
+        Context.getInstance().logEvent(new MoneyEvent(false, tax, player.getName() + " membayar " + getName() + " sebesar 10% dari uang yang dimiliki"));
     }
 
     /**

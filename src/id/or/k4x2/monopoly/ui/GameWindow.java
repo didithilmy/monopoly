@@ -2,14 +2,9 @@ package id.or.k4x2.monopoly.ui;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.*;
-import id.or.k4x2.monopoly.model.ContextEvents.CardEvent;
-import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
-import id.or.k4x2.monopoly.model.ContextEvents.GenericEvent;
-import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
+import id.or.k4x2.monopoly.model.ContextEvents.*;
 import id.or.k4x2.monopoly.model.GameManager;
-import id.or.k4x2.monopoly.ui.ContextEvents.UICardEvent;
-import id.or.k4x2.monopoly.ui.ContextEvents.UIGenericEvent;
-import id.or.k4x2.monopoly.ui.ContextEvents.UIMoneyEvent;
+import id.or.k4x2.monopoly.ui.ContextEvents.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -159,29 +154,44 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
             UICardEvent uiCardEvent = new UICardEvent(cardEvent.isChance(), cardEvent.getCardName(), cardEvent.getCardDescription());
 
             eventsPane.add(uiCardEvent.getPanel());
-            eventsPane.repaint();
         } else if(event instanceof GenericEvent) {
             // GenericEvent
             GenericEvent genericEvent = (GenericEvent) event;
             UIGenericEvent uiGenericEvent = new UIGenericEvent(genericEvent.getEvent());
 
             eventsPane.add(uiGenericEvent.getPanel());
-            eventsPane.repaint();
         } else if(event instanceof MoneyEvent) {
             // MoneyEvent
             MoneyEvent moneyEvent = (MoneyEvent) event;
             UIMoneyEvent uiMoneyEvent = new UIMoneyEvent(moneyEvent.isMoneyAdded(), moneyEvent.getNominal(), moneyEvent.getMessage());
 
             eventsPane.add(uiMoneyEvent.getPanel());
-            eventsPane.repaint();
+        } else if(event instanceof JailedEvent) {
+            // JailedEvent
+            UIJailedEvent uiJailedEvent = new UIJailedEvent();
+
+            eventsPane.add(uiJailedEvent.getPanel());
+        } else if(event instanceof PropertyUnownedEvent) {
+            // PropertyUnownedEvent
+            PropertyUnownedEvent propertyUnownedEvent = (PropertyUnownedEvent) event;
+            UIPropertyUnownedEvent uiPropertyUnownedEvent = new UIPropertyUnownedEvent(propertyUnownedEvent.getProperty());
+
+            eventsPane.add(uiPropertyUnownedEvent.getPanel());
+        } else if(event instanceof GroupOwnedEvent) {
+            // PropertyUnownedEvent
+            GroupOwnedEvent groupOwnedEvent = (GroupOwnedEvent) event;
+            UILotGroupOwned uiLotGroupOwned = new UILotGroupOwned(groupOwnedEvent.getLot());
+
+            eventsPane.add(uiLotGroupOwned.getPanel());
         } else {
             // TODO change
             UIGenericEvent uiGenericEvent = new UIGenericEvent(event.toString());
 
             eventsPane.add(uiGenericEvent.getPanel());
-            eventsPane.repaint();
         }
 
         eventsPane.add(Box.createRigidArea(new Dimension(0,8)));
+        eventsPane.revalidate();
+        eventsPane.repaint();
     }
 }

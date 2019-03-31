@@ -1,6 +1,8 @@
 package id.or.k4x2.monopoly;
 
 import id.or.k4x2.monopoly.entity.Player;
+import id.or.k4x2.monopoly.listeners.ContextListener;
+import id.or.k4x2.monopoly.listeners.Listeners;
 import id.or.k4x2.monopoly.model.Context;
 import id.or.k4x2.monopoly.model.GameManager;
 import id.or.k4x2.monopoly.model.Tiles;
@@ -37,5 +39,28 @@ public class Main {
 
         GameManager.getInstance().start(players);
         Context.getInstance().start();
+
+        Listeners.addContextListener(new ContextListener() {
+            @Override
+            public void onBeginTurn(Player previousPlayer, Player player) {
+                // No-op
+            }
+
+            @Override
+            public void onTurnEnded(Player player) {
+                // No-op
+            }
+
+            @Override
+            public void onWinnerDeclared(Player player) {
+                JOptionPane.showMessageDialog(frame,
+                        "Selamat kepada " + player.getName() + " karena memenangkan permainan ini!", "Pememang", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            @Override
+            public void onDiceRolled(Player player) {
+                // No-op
+            }
+        });
     }
 }

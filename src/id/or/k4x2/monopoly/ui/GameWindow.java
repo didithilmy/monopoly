@@ -97,7 +97,10 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
      * @param player Player entity
      */
     public void onPlayerBankrupted(Player player) {
-
+        PlayerDetailPane pane = windowMap.get(player.getDesignation());
+        if(pane != null) {
+            pane.setBankrupted(true);
+        }
     }
 
     /**

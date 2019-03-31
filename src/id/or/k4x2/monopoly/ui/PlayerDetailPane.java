@@ -11,6 +11,7 @@ public class PlayerDetailPane {
     private JPanel paneColor;
     private JLabel playerName;
     private JLabel playerMoney;
+    private JPanel panelLeft;
     private static Border MARGIN = new EmptyBorder(8, 8, 8, 8);
     private static Border NORMAL_BORDER = new CompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1), MARGIN);
     private static Border ACTIVE_BORDER = new CompoundBorder(BorderFactory.createLineBorder(Color.BLUE, 3), MARGIN);
@@ -18,6 +19,7 @@ public class PlayerDetailPane {
     public PlayerDetailPane() {
         super();
         panel.setBorder(NORMAL_BORDER);
+        panelLeft.setOpaque(false);
     }
 
     public JPanel getPanel() {
@@ -42,5 +44,12 @@ public class PlayerDetailPane {
         } else {
             panel.setBorder(NORMAL_BORDER);
         }
+    }
+
+    public void setBankrupted(boolean bankrupted) {
+        panel.setBackground(bankrupted ? Color.LIGHT_GRAY : Color.WHITE);
+        playerName.setForeground(bankrupted ? Color.DARK_GRAY : Color.BLACK);
+        playerMoney.setForeground(bankrupted ? Color.DARK_GRAY : Color.BLACK);
+        playerMoney.setText(bankrupted ? "Bankrupt" : "Rp " + playerMoney);
     }
 }

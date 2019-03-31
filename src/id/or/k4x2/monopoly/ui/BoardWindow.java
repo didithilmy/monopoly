@@ -1,9 +1,7 @@
 package id.or.k4x2.monopoly.ui;
 
 import id.or.k4x2.monopoly.entity.Player;
-import id.or.k4x2.monopoly.listeners.GameStateListener;
-import id.or.k4x2.monopoly.listeners.Listeners;
-import id.or.k4x2.monopoly.listeners.PlayerMovedListener;
+import id.or.k4x2.monopoly.listeners.*;
 import id.or.k4x2.monopoly.model.GameManager;
 import id.or.k4x2.monopoly.model.Tiles;
 
@@ -13,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BoardWindow implements GameStateListener, PlayerMovedListener {
+public class BoardWindow implements GameStateListener, PlayerMovedListener, PlayerAttributesListener {
     private JPanel panelMain;
     private JPanel tile0;
     private JPanel tile1;
@@ -78,6 +76,7 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener {
         // Register listener
         Listeners.addGameStateListener(this);
         Listeners.addPlayerMoveListener(this);
+        Listeners.addPlayerAttributesListener(this);
     }
 
     private void initiateTiles() {
@@ -233,5 +232,25 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener {
         ((PlayerOverlay) tiles[tileIndex].getComponent(0)).attachPlayer(player.getDesignation());
 
         positionsMap.put(player.getDesignation(), tileIndex);
+    }
+
+    /**
+     * On player bankrupted
+     * @param player Player entity
+     */
+    public void onPlayerBankrupted(Player player) {
+        // Detach player from old position
+        int oldPosition = positionsMap.get(player.getDesignation());
+        ((PlayerOverlay) tiles[oldPosition].getComponent(0)).detachPlayer(player.getDesignation());
+    }
+
+    /**
+     * On money changed
+     * @param player Player entity
+     * @param oldNominal old nominal
+     * @param newNominal new nominal
+     */
+    public void moneyUpdated(Player player, int oldNominal, int newNominal) {
+        // Do nothing
     }
 }

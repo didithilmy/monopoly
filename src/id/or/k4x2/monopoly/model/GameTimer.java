@@ -32,7 +32,6 @@ public class GameTimer {
             @Override
             public void run() {
                 currtime--;
-                System.out.println(currtime);
                 if (currtime == 0) {
                     this.cancel();
                     timerListener.onFinish();

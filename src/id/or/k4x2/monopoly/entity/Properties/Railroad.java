@@ -58,7 +58,7 @@ public class Railroad extends Property {
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " pays Rp " + nominal + " to " + getOwner().getName() + " in rent"));
 
-                GameManager.getInstance().checkBankruptcy();
+                //GameManager.getInstance().checkBankruptcy();
             }
         } else {
             // No owner, log event

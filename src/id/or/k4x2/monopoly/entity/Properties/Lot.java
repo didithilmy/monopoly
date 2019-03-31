@@ -75,7 +75,7 @@ public class Lot extends Property {
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " membayar Rp " + nominal + " kepada " + getOwner().getName() + " untuk biaya sewa"));
 
-                GameManager.getInstance().checkBankruptcy();
+                //GameManager.getInstance().checkBankruptcy();
             }
         } else {
             // No owner, log event
@@ -131,6 +131,10 @@ public class Lot extends Property {
 
     public int getNoOfHouses() {
         return noOfHouses;
+    }
+
+    public void setNoOfHouses(int noOfHouses) {
+        this.noOfHouses = noOfHouses;
     }
 
     /**

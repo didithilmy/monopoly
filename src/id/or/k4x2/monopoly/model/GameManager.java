@@ -98,7 +98,7 @@ public class GameManager {
             if(tileIndex < currentPos) {
                 // If destination tile is less than current position, it passes through Go.
                 // Reward money
-                addMoney(player, 200);  // TODO don't hardcode
+                addMoney(player, 0);  // TODO don't hardcode
 
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(true, 200, player.getName() + " mendapat Rp 200 karena melewati Mulai"));
@@ -152,6 +152,25 @@ public class GameManager {
 
         // Refresh UI
         Listeners.invokeMoneyUpdated(player, oldNominal, newNominal);
+
+        // Check bankruptcy
+        if(player.getMoney() < 0) {
+            player.setBankrupted(true);
+
+            // Release properties
+            for(Property property : player.getProperties()) {
+                property.setOwner(null);
+
+                if(property instanceof Lot) {
+                    ((Lot) property).setNoOfHouses(0);
+                }
+            }
+
+            player.getProperties().clear();
+
+            // Refresh UI
+            Listeners.invokePlayerBankrupted(player);
+        }
     }
 
     /**
@@ -211,16 +230,27 @@ public class GameManager {
      * Check bankruptcy
      * Iterate array of Players, flag any Player with negative money
      */
-    public void checkBankruptcy() {
+    /*public void checkBankruptcy() {
         for(Player player : players) {
             if(player.getMoney() < 0) {
                 player.setBankrupted(true);
+
+                // Release properties
+                for(Property property : player.getProperties()) {
+                    property.setOwner(null);
+
+                    if(property instanceof Lot) {
+                        ((Lot) property).setNoOfHouses(0);
+                    }
+                }
+
+                player.getProperties().clear();
 
                 // Refresh UI
                 Listeners.invokePlayerBankrupted(player);
             }
         }
-    }
+    }*/
 
     public List<Player> getPlayers() {
         return players;

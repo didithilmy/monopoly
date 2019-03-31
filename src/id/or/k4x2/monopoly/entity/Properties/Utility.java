@@ -53,7 +53,7 @@ public class Utility extends Property {
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " membayar Rp " + nominal + " ke " + getOwner().getName() + " untuk biaya sewa"));
 
-                GameManager.getInstance().checkBankruptcy();
+                //GameManager.getInstance().checkBankruptcy();
             }
         } else {
             // No owner, log event

@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Muhammad Aditya Hilmy, NIM 18217025
  */
-public class Context {
+public class Context implements GameTimer.TimerListener {
     private static Context instance = new Context();
 
     public static Context getInstance() {
@@ -47,6 +47,8 @@ public class Context {
         eventLog.clear();
 
         Listeners.invokeBeginTurn(null, getCurrentPlayer());
+
+        beginTurn(null);
     }
 
     /**
@@ -62,6 +64,10 @@ public class Context {
 
         // Clear event log
         eventLog.clear();
+
+        // Start timer for end turn
+        GameTimer.getInstance().stop();
+        GameTimer.getInstance().start(30, this);
 
         // Shuffle dice
         dice.shuffle();
@@ -105,6 +111,8 @@ public class Context {
      * End the player turn
      */
     public void endTurn() {
+        diceRolled = false;
+
         List<Player> players = GameManager.getInstance().getPlayers();
 
         // Publish end turn
@@ -131,13 +139,15 @@ public class Context {
         } else {
             beginTurn(oldPlayer);
         }
-
-        diceRolled = false;
     }
 
     private void beginTurn(Player oldPlayer) {
         // Publish begin turn
         Listeners.invokeBeginTurn(oldPlayer, getCurrentPlayer());
+
+        // Start timer for roll dice
+        GameTimer.getInstance().stop();
+        GameTimer.getInstance().start(10, this);
 
         // Check if in jail
         boolean playerJailed = JailManager.getInstance().checkJail(getCurrentPlayer());
@@ -164,5 +174,36 @@ public class Context {
         System.out.println("Event logged: " + event);
         eventLog.add(event);
         Listeners.invokeContextEventLogged(event);
+    }
+
+    /**
+     * On timer start
+     * @param timeLeft remaining time
+     */
+    @Override
+    public void onStart(int timeLeft) {
+        Listeners.invokeTimerStart(timeLeft);
+    }
+
+    /**
+     * On timer tick
+     * @param timeLeft remaining time
+     */
+    @Override
+    public void onTick(int timeLeft) {
+        Listeners.invokeTimerTick(timeLeft);
+    }
+
+    /**
+     * On timer finished
+     */
+    @Override
+    public void onFinish() {
+        Listeners.invokeTimerFinish();
+        if(diceRolled) {
+            endTurn();
+        } else {
+            rollDice();
+        }
     }
 }

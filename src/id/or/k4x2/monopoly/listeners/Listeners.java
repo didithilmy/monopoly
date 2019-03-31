@@ -3,6 +3,7 @@ package id.or.k4x2.monopoly.listeners;
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.model.Context;
 import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
+import id.or.k4x2.monopoly.model.GameTimer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class Listeners {
     private static Set<PlayerAttributesListener> playerAttributesListeners = new HashSet<>();
     private static Set<ContextListener> contextListeners = new HashSet<>();
     private static Set<ContextEventListener> contextEventListeners = new HashSet<>();
+    private static Set<GameTimer.TimerListener> timerListeners = new HashSet<>();
 
     public static void clear() {
         gameStateListeners.clear();
@@ -23,6 +25,7 @@ public class Listeners {
         playerAttributesListeners.clear();
         contextListeners.clear();
         contextEventListeners.clear();
+        timerListeners.clear();
     }
 
     public static void addGameStateListener(GameStateListener listener) {
@@ -64,6 +67,14 @@ public class Listeners {
 
     public static void removeContextEventListener(ContextEventListener listener) {
         contextEventListeners.remove(listener);
+    }
+
+    public static void addTimerListener(GameTimer.TimerListener listener) {
+        timerListeners.add(listener);
+    }
+
+    public static void removeTimerListener(GameTimer.TimerListener listener) {
+        timerListeners.remove(listener);
     }
 
     public static void invokeStartGame() {
@@ -123,6 +134,24 @@ public class Listeners {
     public static void invokeContextEventLogged(ContextEvent event) {
         for(ContextEventListener listener : contextEventListeners) {
             listener.onEventLogged(event);
+        }
+    }
+
+    public static void invokeTimerStart(int timeLeft) {
+        for(GameTimer.TimerListener listener : timerListeners) {
+            listener.onStart(timeLeft);
+        }
+    }
+
+    public static void invokeTimerTick(int timeLeft) {
+        for(GameTimer.TimerListener listener : timerListeners) {
+            listener.onTick(timeLeft);
+        }
+    }
+
+    public static void invokeTimerFinish() {
+        for(GameTimer.TimerListener listener : timerListeners) {
+            listener.onFinish();
         }
     }
 }

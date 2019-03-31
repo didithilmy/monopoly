@@ -7,7 +7,7 @@ package id.or.k4x2.monopoly.model;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameTimer extends TimerTask{
+public class GameTimer {
     private static GameTimer ourInstance = new GameTimer();
 
     public static GameTimer getInstance() {
@@ -22,28 +22,42 @@ public class GameTimer extends TimerTask{
         timer = new Timer();
     }
 
-    public void run() {
-        currtime--;
-        System.out.println(currtime);
-        if (currtime == 0) {
+    public void start(int seconds, TimerListener listener) {
+        timer = new Timer();
+
+        timerListener = listener;
+        currtime = seconds;
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                currtime--;
+                System.out.println(currtime);
+                if (currtime == 0) {
+                    this.cancel();
+                    timerListener.onFinish();
+                } else {
+                    timerListener.onTick(currtime);
+                }
+            }
+        }, 1000, 1000);
+
+        listener.onStart(currtime);
+    }
+
+    public void stop() {
+        try {
             timer.cancel();
-            System.out.println("Your turn is over.");
-            // TODO KE CONTEXT
-            timerListener.onFinish();
-        } else {
-            timerListener.onTick();
+        } catch (Exception e) {
+            // Do nothing
         }
     }
 
-    public void start(int seconds, TimerListener listener) {
-        timer.scheduleAtFixedRate(this,1000,1000);
-        timerListener = listener;
-        currtime = seconds;
-    }
-
     public interface TimerListener {
+        public void onStart(int timeLeft);
+
         // check saat jalan
-        public void onTick();
+        public void onTick(int timeLeft);
 
         // check saat sudah selesai
         public void onFinish();

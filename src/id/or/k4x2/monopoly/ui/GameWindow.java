@@ -4,6 +4,7 @@ import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.*;
 import id.or.k4x2.monopoly.model.ContextEvents.*;
 import id.or.k4x2.monopoly.model.GameManager;
+import id.or.k4x2.monopoly.model.GameTimer;
 import id.or.k4x2.monopoly.ui.ContextEvents.*;
 
 import javax.swing.*;
@@ -13,12 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GameWindow implements GameStateListener, PlayerAttributesListener, ContextListener, ContextEventListener {
+public class GameWindow implements GameStateListener, PlayerAttributesListener, ContextListener, ContextEventListener, GameTimer.TimerListener {
     private JPanel panel;
     private JPanel playerPane;
     private JPanel boardPane;
     private JPanel dicePane;
     private JPanel eventsPane;
+    private JLabel lblTime;
 
     private Map<Player.Designation, PlayerDetailPane> windowMap;
 
@@ -28,6 +30,7 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
         Listeners.addPlayerAttributesListener(this);
         Listeners.addContextListener(this);
         Listeners.addContextEventListener(this);
+        Listeners.addTimerListener(this);
 
         windowMap = new HashMap<>();
 
@@ -193,5 +196,26 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
         eventsPane.add(Box.createRigidArea(new Dimension(0,8)));
         eventsPane.revalidate();
         eventsPane.repaint();
+    }
+
+    /**
+     * On timer start
+     */
+    public void onStart(int timeLeft) {
+        lblTime.setText(timeLeft + " detik");
+    }
+
+    /**
+     * On timer ticks
+     */
+    public void onTick(int timeLeft) {
+        lblTime.setText(timeLeft + " detik");
+    }
+
+    /**
+     * On timer finished
+     */
+    public void onFinish() {
+        lblTime.setText("-");
     }
 }

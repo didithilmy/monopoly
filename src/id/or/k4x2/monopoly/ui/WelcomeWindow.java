@@ -38,6 +38,8 @@ public class WelcomeWindow {
         btnPlay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                players.clear();
+
                 if(checkPlay1.isSelected()) {
                     Player p = new Player(txtName1.getText(), Player.Designation.PLAYER_A);
                     players.add(p);

@@ -70,6 +70,7 @@ public class Lot extends Property {
             } else {
                 int nominal = getRentPrice();
                 GameManager.getInstance().deductMoney(player, nominal);
+                GameManager.getInstance().addMoney(getOwner(),nominal);
 
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " membayar Rp " + nominal + " kepada " + getOwner().getName() + " untuk biaya sewa"));

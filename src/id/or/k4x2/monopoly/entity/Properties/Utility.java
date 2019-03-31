@@ -48,6 +48,7 @@ public class Utility extends Property {
                 int nominal = getRentPrice();
 
                 GameManager.getInstance().deductMoney(player, nominal);
+                GameManager.getInstance().addMoney(getOwner(), nominal);
 
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " membayar Rp " + nominal + " ke " + getOwner().getName() + " untuk biaya sewa"));

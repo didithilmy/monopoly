@@ -25,16 +25,17 @@ public class Railroad extends Property {
         if (getOwner() == null) {
             return 0;
         } else {
-            if (getNumRailroad(getOwner()) == 1) {
+            int num = getNumRailroad(getOwner());
+            if (num == 1) {
                 return (getBasePrice() / 8);
-            } else if (getNumRailroad(getOwner()) == 2) {
+            } else if (num == 2) {
                 return (getBasePrice() / 4);
-            } else if (getNumRailroad(getOwner()) == 3) {
+            } else if (num == 3) {
                 return (getBasePrice() / 2);
-            } else if (getNumRailroad(getOwner()) == 4) {
+            } else if (num == 4) {
                 return (getBasePrice());
             } else {
-                throw new RuntimeException("Illegal noOfHouses");
+                throw new RuntimeException("Illegal railroad: " + num);
             }
         }
     }
@@ -52,6 +53,7 @@ public class Railroad extends Property {
             if (getOwner() != player) {
                 int nominal = getRentPrice();
                 GameManager.getInstance().deductMoney(player, nominal);
+                GameManager.getInstance().addMoney(getOwner(), nominal);
 
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(false, nominal, player.getName() + " pays Rp " + nominal + " to " + getOwner().getName() + " in rent"));

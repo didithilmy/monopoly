@@ -14,7 +14,6 @@ public class ButtonPane implements ContextListener {
     private JPanel panel;
     private JButton rollDiceButton;
     private JButton endTurnButton;
-    private JButton buyLotButton;
     private JLabel die1;
     private JLabel die2;
 
@@ -52,9 +51,6 @@ public class ButtonPane implements ContextListener {
         return endTurnButton;
     }
 
-    public JButton getBuyLotButton() {
-        return buyLotButton;
-    }
 
     /**
      * On begin turn

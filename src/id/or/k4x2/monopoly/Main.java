@@ -33,7 +33,7 @@ public class Main {
         players.add(new Player("Player 1", Player.Designation.PLAYER_A));
         players.add(new Player("Player 2", Player.Designation.PLAYER_B));
         players.add(new Player("Player 3", Player.Designation.PLAYER_C));
-        players.add(new Player("Player 4", Player.Designation.PLAYER_D));
+        //players.add(new Player("Player 4", Player.Designation.PLAYER_D));
 
         GameManager.getInstance().start(players);
         Context.getInstance().start();

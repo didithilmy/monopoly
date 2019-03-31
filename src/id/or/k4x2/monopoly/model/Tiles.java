@@ -25,14 +25,14 @@ public class Tiles {
         tiles[36] = new Chance();
 
         // Utilities
-        tiles[12] = new Utility("Perusahaan Listrik", 0);  // Perusahaan Listrik
-        tiles[28] = new Utility("Perusahaan Air", 0);  // Perusahaan Air
+        tiles[12] = new Utility("Perusahaan Listrik", 50);  // Perusahaan Listrik
+        tiles[28] = new Utility("Perusahaan Air", 50);  // Perusahaan Air
 
         // Public services
-        tiles[5] = new Railroad("Bandara Kemayoran", 0);  // Bandara Kemayoran
-        tiles[15] = new Railroad("Terminal Bis Semarang", 0);  // Terminal bis semarang
-        tiles[25] = new Railroad("Stasiun Pasar Turi", 0);  // Stasiun Ps. Turi
-        tiles[35] = new Railroad("Pelabuhan Belawan", 0);  // Pelabuhan Belawan
+        tiles[5] = new Railroad("Bandara Kemayoran", 80);  // Bandara Kemayoran
+        tiles[15] = new Railroad("Terminal Bis Semarang", 80);  // Terminal bis semarang
+        tiles[25] = new Railroad("Stasiun Pasar Turi", 80);  // Stasiun Ps. Turi
+        tiles[35] = new Railroad("Pelabuhan Belawan", 80);  // Pelabuhan Belawan
 
         // Taxes
         tiles[4] = new Taxation("Pajak Jalan");  // Pajak Jalan
@@ -46,42 +46,42 @@ public class Tiles {
         tiles[20] = new FreeParking("Parkir Bebas");
 
         // Brown block
-        tiles[1] = new Lot("Monas", 0, Lot.Group.BROWN);
-        tiles[3] = new Lot("Taman Mini", 0, Lot.Group.BROWN);
+        tiles[1] = new Lot("Monas", 50, Lot.Group.BROWN);
+        tiles[3] = new Lot("Taman Mini", 50, Lot.Group.BROWN);
 
         // Light blue block
-        tiles[6] = new Lot("Ragunan", 0, Lot.Group.LIGHT_BLUE);
-        tiles[8] = new Lot("Binaria", 0, Lot.Group.LIGHT_BLUE);
-        tiles[9] = new Lot("Taman Pluit", 0, Lot.Group.LIGHT_BLUE);
+        tiles[6] = new Lot("Ragunan", 60, Lot.Group.LIGHT_BLUE);
+        tiles[8] = new Lot("Binaria", 60, Lot.Group.LIGHT_BLUE);
+        tiles[9] = new Lot("Taman Pluit", 65, Lot.Group.LIGHT_BLUE);
 
         // Purple block
-        tiles[11] = new Lot("Kebun Raya Bogor", 0, Lot.Group.PURPLE);
-        tiles[13] = new Lot("Pelabuhan Ratu", 0, Lot.Group.PURPLE);
-        tiles[14] = new Lot("Tangkuban Perahu", 0, Lot.Group.PURPLE);
+        tiles[11] = new Lot("Kebun Raya Bogor", 80, Lot.Group.PURPLE);
+        tiles[13] = new Lot("Pelabuhan Ratu", 80, Lot.Group.PURPLE);
+        tiles[14] = new Lot("Tangkuban Perahu", 85, Lot.Group.PURPLE);
 
         // Orange block
-        tiles[16] = new Lot("Gedung Batu", 0, Lot.Group.ORANGE);
-        tiles[18] = new Lot("Kopeng", 0, Lot.Group.ORANGE);
-        tiles[19] = new Lot("Borobudur", 0, Lot.Group.ORANGE);
+        tiles[16] = new Lot("Gedung Batu", 100, Lot.Group.ORANGE);
+        tiles[18] = new Lot("Kopeng", 100, Lot.Group.ORANGE);
+        tiles[19] = new Lot("Borobudur", 105, Lot.Group.ORANGE);
 
         // Red block
-        tiles[21] = new Lot("Prambanan", 0, Lot.Group.RED);
-        tiles[23] = new Lot("Kraton Yogya", 0, Lot.Group.RED);
-        tiles[24] = new Lot("Bengawan Solo", 0, Lot.Group.RED);
+        tiles[21] = new Lot("Prambanan", 120, Lot.Group.RED);
+        tiles[23] = new Lot("Kraton Yogya", 120, Lot.Group.RED);
+        tiles[24] = new Lot("Bengawan Solo", 125, Lot.Group.RED);
 
         // Yellow block
-        tiles[26] = new Lot("Sarangan", 0, Lot.Group.YELLOW);
-        tiles[27] = new Lot("Selecta", 0, Lot.Group.YELLOW);
-        tiles[29] = new Lot("Gunung Kawi", 0, Lot.Group.YELLOW);
+        tiles[26] = new Lot("Sarangan", 140, Lot.Group.YELLOW);
+        tiles[27] = new Lot("Selecta", 140, Lot.Group.YELLOW);
+        tiles[29] = new Lot("Gunung Kawi", 145, Lot.Group.YELLOW);
 
         // Green block
-        tiles[31] = new Lot("Pantai Sanur", 0, Lot.Group.GREEN);
-        tiles[32] = new Lot("Tampak Siring", 0, Lot.Group.GREEN);
-        tiles[34] = new Lot("Taman Laut Banda", 0, Lot.Group.GREEN);
+        tiles[31] = new Lot("Pantai Sanur", 160, Lot.Group.GREEN);
+        tiles[32] = new Lot("Tampak Siring", 160, Lot.Group.GREEN);
+        tiles[34] = new Lot("Taman Laut Banda", 165, Lot.Group.GREEN);
 
         // Blue block
-        tiles[37] = new Lot("Danau Toba", 0, Lot.Group.BLUE);
-        tiles[39] = new Lot("Brastagi", 0, Lot.Group.BLUE);
+        tiles[37] = new Lot("Danau Toba", 180, Lot.Group.BLUE);
+        tiles[39] = new Lot("Brastagi", 180, Lot.Group.BLUE);
     }
 
     /**

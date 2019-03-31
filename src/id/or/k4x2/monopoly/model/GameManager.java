@@ -184,10 +184,13 @@ public class GameManager {
             if (player.getMoney() >= price) {
                 // Legal move
                 // Deduct money
-                player.deductMoney(price);
+                deductMoney(player, price);
 
                 // Set ownership
                 property.setOwner(player);
+
+                // Add property to player
+                player.getProperties().add(property);
             }
         }
     }

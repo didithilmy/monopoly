@@ -24,6 +24,14 @@ A mock of one of the world's most popular board game: Monopoly.
 * Singleton
 * Exception
 
+### Class
+Its class uses :
+
+* Inheritance
+* Polymorphism
+* Abstract Class / Interface
+* Generic Class
+
 ### Build and Execution
 
 Building this project requires Maven build tool and Java 8 (or newer).

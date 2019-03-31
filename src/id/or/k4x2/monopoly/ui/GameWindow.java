@@ -2,9 +2,11 @@ package id.or.k4x2.monopoly.ui;
 
 import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.*;
+import id.or.k4x2.monopoly.model.Context;
 import id.or.k4x2.monopoly.model.ContextEvents.*;
 import id.or.k4x2.monopoly.model.GameManager;
 import id.or.k4x2.monopoly.model.GameTimer;
+import id.or.k4x2.monopoly.model.Tiles;
 import id.or.k4x2.monopoly.ui.ContextEvents.*;
 
 import javax.swing.*;
@@ -220,5 +222,46 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
      */
     public void onFinish() {
         lblTime.setText("-");
+    }
+
+    public void show(List<Player> players) {
+        Tiles.init();
+        JFrame frame = new JFrame("Engi's Monopoly");
+
+        getBoardPane().add(new BoardWindow().getPanelMain());
+        getDicePane().add(new ButtonPane().getPanel());
+
+        frame.setContentPane(getPanel());
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setSize(900, 700);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        GameManager.getInstance().start(players);
+        Context.getInstance().start();
+
+        Listeners.addContextListener(new ContextListener() {
+            @Override
+            public void onBeginTurn(Player previousPlayer, Player player) {
+                // No-op
+            }
+
+            @Override
+            public void onTurnEnded(Player player) {
+                // No-op
+            }
+
+            @Override
+            public void onWinnerDeclared(Player player) {
+                JOptionPane.showMessageDialog(frame,
+                        "Selamat kepada " + player.getName() + " karena memenangkan permainan ini!", "Pememang", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            @Override
+            public void onDiceRolled(Player player) {
+                // No-op
+            }
+        });
     }
 }

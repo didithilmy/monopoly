@@ -52,17 +52,18 @@
               </component>
             </children>
           </grid>
-          <component id="8c12" class="javax.swing.JTextField" binding="playerName1TextField" default-binding="true">
+          <component id="8c12" class="javax.swing.JTextField" binding="txtName1">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
-              <text value="Player Name 1"/>
+              <text value=""/>
+              <toolTipText value="Player Name 1"/>
             </properties>
           </component>
-          <component id="26290" class="javax.swing.JCheckBox" binding="lesgoWakgengCheckBox" default-binding="true">
+          <component id="26290" class="javax.swing.JCheckBox" binding="checkPlay1">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -106,17 +107,18 @@
               </component>
             </children>
           </grid>
-          <component id="6b32b" class="javax.swing.JTextField" binding="playerName2TextField" default-binding="true">
+          <component id="6b32b" class="javax.swing.JTextField" binding="txtName2">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
-              <text value="Player Name 2"/>
+              <text value=""/>
+              <toolTipText value="Player Name 2"/>
             </properties>
           </component>
-          <component id="eba0a" class="javax.swing.JCheckBox" binding="lesgoWakgengCheckBox1" default-binding="true">
+          <component id="eba0a" class="javax.swing.JCheckBox" binding="checkPlay2">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -160,17 +162,18 @@
               </component>
             </children>
           </grid>
-          <component id="a89e" class="javax.swing.JTextField" binding="playerName3TextField" default-binding="true">
+          <component id="a89e" class="javax.swing.JTextField" binding="txtName3">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
-              <text value="Player Name 3"/>
+              <text value=""/>
+              <toolTipText value="Player Name 3"/>
             </properties>
           </component>
-          <component id="6b26a" class="javax.swing.JCheckBox" binding="lesgoWakgengCheckBox4" default-binding="true">
+          <component id="6b26a" class="javax.swing.JCheckBox" binding="checkPlay3">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -214,17 +217,18 @@
               </component>
             </children>
           </grid>
-          <component id="e11a3" class="javax.swing.JTextField" binding="playerName4TextField" default-binding="true">
+          <component id="e11a3" class="javax.swing.JTextField" binding="txtName4">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
-              <text value="Player Name 4"/>
+              <text value=""/>
+              <toolTipText value="Player Name 4"/>
             </properties>
           </component>
-          <component id="a5e9b" class="javax.swing.JCheckBox" binding="lesgoWakgengCheckBox3" default-binding="true">
+          <component id="a5e9b" class="javax.swing.JCheckBox" binding="checkPlay4">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -235,7 +239,7 @@
           </component>
         </children>
       </grid>
-      <component id="2675" class="javax.swing.JButton" binding="mainkanButton" default-binding="true">
+      <component id="2675" class="javax.swing.JButton" binding="btnPlay">
         <constraints>
           <grid row="6" column="6" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

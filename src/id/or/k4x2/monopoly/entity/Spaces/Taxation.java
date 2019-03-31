@@ -33,7 +33,4 @@ public class Taxation extends Space {
      * This method is called when a player is leaving off the Tile
      * @param player Player entity
      */
-    public void onPlayerLeaving(Player player) {
-        // TODO implement
-    }
 }

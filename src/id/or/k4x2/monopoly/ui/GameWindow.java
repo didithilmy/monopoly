@@ -140,7 +140,7 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
      * @param player Player entity
      */
     public void onWinnerDeclared(Player player) {
-        // TODO set UI
+        //nothing
     }
 
     /**
@@ -192,7 +192,7 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
 
             eventsPane.add(uiLotGroupOwned.getPanel());
         } else {
-            // TODO change
+            // else
             UIGenericEvent uiGenericEvent = new UIGenericEvent(event.toString());
 
             eventsPane.add(uiGenericEvent.getPanel());

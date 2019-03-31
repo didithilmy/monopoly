@@ -75,7 +75,7 @@ public class ButtonPane implements ContextListener {
      * @param player Player entity
      */
     public void onWinnerDeclared(Player player) {
-        // TODO set UI
+        //nothing
     }
 
     /**

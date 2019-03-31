@@ -97,7 +97,7 @@ public class GameManager {
             if(tileIndex < currentPos) {
                 // If destination tile is less than current position, it passes through Go.
                 // Reward money
-                addMoney(player, PASS_GO_SALARY);  // TODO don't hardcode
+                addMoney(player, PASS_GO_SALARY);
 
                 // Log event
                 Context.getInstance().logEvent(new MoneyEvent(true, PASS_GO_SALARY, player.getName() + " mendapat Rp " + PASS_GO_SALARY + " karena melewati Mulai"));

@@ -47,9 +47,6 @@ public abstract class Property extends Tile {
         this.owner = owner;
     }
 
-    public void purchaseProperty(Player buyer) throws PurchaseException {
-        // TODO implement
-    }
 
     public static class PurchaseException extends Exception {
         private Error error;

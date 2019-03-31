@@ -184,7 +184,6 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener, Play
      * Called when the game is starting
      */
     public void onGameStart() {
-        // TODO implement
         List<Player> players = GameManager.getInstance().getPlayers();
 
         // Initiate players

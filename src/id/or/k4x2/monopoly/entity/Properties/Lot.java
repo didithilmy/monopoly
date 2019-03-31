@@ -61,7 +61,6 @@ public class Lot extends Property {
 
         if (getOwner()!=null) {
             if (getOwner() == player) {
-                //TODO offer player to build house
                 // Check if player owns the group
                 if(getNoGroupOwned(getOwner(), this.group)==group.getNo()) {
                     // Log event
@@ -101,9 +100,6 @@ public class Lot extends Property {
      * This method is called when a player is leaving off the Tile
      * @param player Player entity
      */
-    public void onPlayerLeaving(Player player) {
-        // TODO implement
-    }
 
     /**
      * Construct a house

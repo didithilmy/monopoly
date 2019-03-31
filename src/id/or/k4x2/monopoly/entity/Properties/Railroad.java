@@ -71,9 +71,6 @@ public class Railroad extends Property {
      * This method is called when a player is leaving off the Tile
      * @param player Player entity
      */
-    public void onPlayerLeaving(Player player) {
-        // TODO implement
-    }
 
     public static int getNumRailroad(Player player) {
         int count = 0;

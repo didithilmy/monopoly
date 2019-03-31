@@ -4,12 +4,9 @@ import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.entity.Properties.Lot;
 import id.or.k4x2.monopoly.entity.Property;
 import id.or.k4x2.monopoly.entity.Tile;
-import id.or.k4x2.monopoly.listeners.GameStateListener;
 import id.or.k4x2.monopoly.listeners.Listeners;
-import id.or.k4x2.monopoly.listeners.PlayerMovedListener;
 import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +18,8 @@ public class GameManager {
     private static GameManager instance = new GameManager();
     private List<Player> players;
     private Map<Player.Designation, Integer> positionMap;
+
+    private static final int PASS_GO_SALARY = 200;
 
     private GameManager() {
         positionMap = new HashMap<>();
@@ -98,10 +97,10 @@ public class GameManager {
             if(tileIndex < currentPos) {
                 // If destination tile is less than current position, it passes through Go.
                 // Reward money
-                addMoney(player, 0);  // TODO don't hardcode
+                addMoney(player, PASS_GO_SALARY);  // TODO don't hardcode
 
                 // Log event
-                Context.getInstance().logEvent(new MoneyEvent(true, 200, player.getName() + " mendapat Rp 200 karena melewati Mulai"));
+                Context.getInstance().logEvent(new MoneyEvent(true, PASS_GO_SALARY, player.getName() + " mendapat Rp " + PASS_GO_SALARY + " karena melewati Mulai"));
             }
         }
 

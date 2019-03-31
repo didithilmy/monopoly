@@ -26,11 +26,11 @@ public class Utility extends Property {
             return 0;
         } else {
            if (getNumUtility(getOwner())==1){
-                return(1/8 * getBasePrice());
+                return getBasePrice() / 8;
             }else if (getNumUtility(getOwner())==2){ 
-                return(1/2 * getBasePrice()); 
+                return getBasePrice() / 2;
              }else {
-                return(getBasePrice()); 
+                return getBasePrice();
             }
         } 
     }

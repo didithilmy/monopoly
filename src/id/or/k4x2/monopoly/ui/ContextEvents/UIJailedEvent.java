@@ -33,13 +33,15 @@ public class UIJailedEvent {
         btnPostBail.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Deduct money
-                GameManager.getInstance().deductMoney(player, BAIL_PRICE);
-                JailManager.getInstance().removeJail(player);
+                if (JailManager.getInstance().checkJail(player)) {
+                    // Deduct money
+                    GameManager.getInstance().deductMoney(player, BAIL_PRICE);
+                    JailManager.getInstance().removeJail(player);
 
-                // Log event
-                Context.getInstance().logEvent(new MoneyEvent(false, BAIL_PRICE, player.getName() + " membayar tebusan untuk keluar dari penjara"));
-                Context.getInstance().logEvent(new GenericEvent(player.getName() + " keluar dari penjara"));
+                    // Log event
+                    Context.getInstance().logEvent(new MoneyEvent(false, BAIL_PRICE, player.getName() + " membayar tebusan untuk keluar dari penjara"));
+                    Context.getInstance().logEvent(new GenericEvent(player.getName() + " keluar dari penjara"));
+                }
 
                 btnPostBail.setEnabled(false);
             }

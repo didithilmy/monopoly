@@ -42,7 +42,7 @@ public class Lot extends Property {
             } else if (noOfHouses == 3) {
                 return (getBasePrice() * 2);
             } else if (noOfHouses == 4) {
-                return (getRentPrice() * 4);
+                return (getBasePrice() * 4);
             }
             else {
                 throw new RuntimeException("Illegal noOfHouses");

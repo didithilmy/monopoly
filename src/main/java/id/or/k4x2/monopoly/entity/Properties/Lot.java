@@ -133,6 +133,10 @@ public class Lot extends Property {
         this.noOfHouses = noOfHouses;
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
     /**
      * Lot group enumeration
      */

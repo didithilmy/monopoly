@@ -29,6 +29,7 @@ public class CardEvent extends ContextEvent {
 
     @Override
     public String toString() {
-        return "CardEvent: [isChance=" + (isChance ? "true" : "false") + ", cardName=" + cardName + ", cardDesc=" + cardDescription + "]";
+        return "Mendapat kartu " + (isChance ? "Kesempatan" : "Dana Umum") + " " + cardName;
+        //return "CardEvent: [isChance=" + (isChance ? "true" : "false") + ", cardName=" + cardName + ", cardDesc=" + cardDescription + "]";
     }
 }

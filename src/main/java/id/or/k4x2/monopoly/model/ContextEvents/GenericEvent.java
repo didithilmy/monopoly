@@ -17,6 +17,6 @@ public class GenericEvent extends ContextEvent {
 
     @Override
     public String toString() {
-        return "GenericEvent: " + event;
+        return event;
     }
 }

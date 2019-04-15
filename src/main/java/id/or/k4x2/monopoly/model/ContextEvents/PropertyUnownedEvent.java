@@ -12,4 +12,9 @@ public class PropertyUnownedEvent extends ContextEvent {
     public Property getProperty() {
         return property;
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

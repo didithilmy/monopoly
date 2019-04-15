@@ -12,4 +12,9 @@ public class GroupOwnedEvent extends ContextEvent {
     public Lot getLot() {
         return lot;
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

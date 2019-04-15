@@ -29,6 +29,7 @@ public class MoneyEvent extends ContextEvent {
 
     @Override
     public String toString() {
-        return "MoneyEvent: [moneyAdded=" + (moneyAdded ? "true" : "false") + ", nominal=" + nominal + ", message=" + message + "]";
+        return (moneyAdded ? "Menambah" : "Berkurang") + " uang sebesar Rp " + nominal + ": " + message;
+        //return "MoneyEvent: [moneyAdded=" + (moneyAdded ? "true" : "false") + ", nominal=" + nominal + ", message=" + message + "]";
     }
 }

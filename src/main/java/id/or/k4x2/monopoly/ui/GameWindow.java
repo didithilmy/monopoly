@@ -65,7 +65,7 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
         // Add Player panes
         List<Player> players = GameManager.getInstance().getPlayers();
         for(Player player : players) {
-            PlayerDetailPane playerDetailPane = new PlayerDetailPane();
+            PlayerDetailPane playerDetailPane = new PlayerDetailPane(player);
             playerDetailPane.getPlayerName().setText(player.getName());
             playerDetailPane.getPlayerMoney().setText("Rp " + player.getMoney());
 

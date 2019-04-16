@@ -5,6 +5,7 @@ import id.or.k4x2.monopoly.entity.Player;
 import id.or.k4x2.monopoly.listeners.ContextListener;
 import id.or.k4x2.monopoly.listeners.Listeners;
 import id.or.k4x2.monopoly.model.Context;
+import id.or.k4x2.monopoly.model.GameManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ public class ButtonPane implements ContextListener {
     private JButton endTurnButton;
     private JLabel die1;
     private JLabel die2;
+    private JButton viewLogButton;
 
     public JPanel getPanel() {
         Listeners.addContextListener(this);
@@ -37,6 +39,13 @@ public class ButtonPane implements ContextListener {
                 Context.getInstance().rollDice();
 
                 rollDiceButton.setEnabled(false);
+            }
+        });
+
+        viewLogButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showLogWindow();
             }
         });
 
@@ -91,5 +100,13 @@ public class ButtonPane implements ContextListener {
 
         die1.setText(String.valueOf(dice.getDie1()));
         die2.setText(String.valueOf(dice.getDie2()));
+    }
+
+    /**
+     * Show log window
+     */
+    private void showLogWindow() {
+        LogWindow window = new LogWindow(GameManager.getInstance().getPlayerLog());
+        window.show();
     }
 }

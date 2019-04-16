@@ -5,8 +5,10 @@ import id.or.k4x2.monopoly.entity.Properties.Lot;
 import id.or.k4x2.monopoly.entity.Property;
 import id.or.k4x2.monopoly.entity.Tile;
 import id.or.k4x2.monopoly.listeners.Listeners;
+import id.or.k4x2.monopoly.model.ContextEvents.ContextEvent;
 import id.or.k4x2.monopoly.model.ContextEvents.MoneyEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +20,13 @@ public class GameManager {
     private static GameManager instance = new GameManager();
     private List<Player> players;
     private Map<Player.Designation, Integer> positionMap;
+    private List<String> playerLog;
 
     private static final int PASS_GO_SALARY = 200;
 
     private GameManager() {
         positionMap = new HashMap<>();
+        playerLog = new ArrayList<>();
     }
 
     public static GameManager getInstance() {
@@ -45,6 +49,9 @@ public class GameManager {
         for(Player player : players) {
             positionMap.put(player.getDesignation(), 0);
         }
+
+        // Clear event log
+        playerLog.clear();
 
         // Call start game
         Listeners.invokeStartGame();
@@ -225,37 +232,21 @@ public class GameManager {
         }
     }
 
-    /**
-     * Check bankruptcy
-     * Iterate array of Players, flag any Player with negative money
-     */
-    /*public void checkBankruptcy() {
-        for(Player player : players) {
-            if(player.getMoney() < 0) {
-                player.setBankrupted(true);
-
-                // Release properties
-                for(Property property : player.getProperties()) {
-                    property.setOwner(null);
-
-                    if(property instanceof Lot) {
-                        ((Lot) property).setNoOfHouses(0);
-                    }
-                }
-
-                player.getProperties().clear();
-
-                // Refresh UI
-                Listeners.invokePlayerBankrupted(player);
-            }
-        }
-    }*/
-
     public List<Player> getPlayers() {
         return players;
     }
 
     public int getPlayerTileIndex(Player player) {
         return positionMap.get(player.getDesignation());
+    }
+
+    public void appendPlayerLog(Player player, ContextEvent event) {
+        if(event.toString() != null) {
+            playerLog.add(player.getName() + ": " + event.toString());
+        }
+    }
+
+    public List<String> getPlayerLog() {
+        return playerLog;
     }
 }

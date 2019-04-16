@@ -31,11 +31,8 @@ public class Context implements GameTimer.TimerListener {
     private boolean diceRolled = false;
     private Dice dice;
 
-    private List<ContextEvent> eventLog;
-
     private Context() {
         dice = new Dice();
-        eventLog = new ArrayList<>();
     }
 
     /**
@@ -44,7 +41,6 @@ public class Context implements GameTimer.TimerListener {
     public void start() {
         currentPlayerIndex = 0;
         diceRolled = false;
-        eventLog.clear();
 
         Listeners.invokeBeginTurn(null, getCurrentPlayer());
 
@@ -62,15 +58,15 @@ public class Context implements GameTimer.TimerListener {
 
         System.out.println("Dice is rolled");
 
-        // Clear event log
-        eventLog.clear();
-
         // Start timer for end turn
         GameTimer.getInstance().stop();
         GameTimer.getInstance().start(30, this);
 
         // Shuffle dice
         dice.shuffle();
+
+        // Log dice rolled
+        GameManager.getInstance().appendPlayerLog(getCurrentPlayer(), new GenericEvent("Mendapat dadu " + dice.getDie1() + " dan " + dice.getDie2()));
 
         // check if player jailed
         boolean playerJailed = JailManager.getInstance().checkJail(getCurrentPlayer());
@@ -172,7 +168,7 @@ public class Context implements GameTimer.TimerListener {
 
     public void logEvent(ContextEvent event) {
         System.out.println("Event logged: " + event);
-        eventLog.add(event);
+        GameManager.getInstance().appendPlayerLog(getCurrentPlayer(), event);
         Listeners.invokeContextEventLogged(event);
     }
 

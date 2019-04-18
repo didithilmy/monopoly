@@ -11,7 +11,7 @@ public class NonLotPropertyLane {
 
     public NonLotPropertyLane(Property property) {
         lblName.setText(property.getName());
-        lblRent.setText("Rp"+property.getRentPrice());
+        lblRent.setText("Harga sewa: Rp"+property.getRentPrice());
     }
 
     public JPanel getPanel() {

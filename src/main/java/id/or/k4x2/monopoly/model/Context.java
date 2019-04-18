@@ -132,6 +132,9 @@ public class Context implements GameTimer.TimerListener {
             // N-1 players are all bankrupt. We have a winner!
             // Publish winner
             Listeners.invokeWinnerDeclared(players.get(currentPlayerIndex));
+
+            // Stop timer
+            GameTimer.getInstance().stop();
         } else {
             beginTurn(oldPlayer);
         }

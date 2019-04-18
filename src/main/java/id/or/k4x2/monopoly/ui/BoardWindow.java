@@ -157,29 +157,6 @@ public class BoardWindow implements GameStateListener, PlayerMovedListener, Play
         return panelMain;
     }
 
-    public JPanel createPanel() {
-        // GBL is important for the next step..
-        JPanel gui = new JPanel(new GridBagLayout());
-        JPanel squareComponent = new JPanel(new BorderLayout()) {
-            private static final long serialVersionUID = 1L;
-            @Override
-            public Dimension getPreferredSize() {
-                // Relies on being the only component
-                // in a layout that will center it without
-                // expanding it to fill all the space.
-                Dimension d = this.getParent().getSize();
-                int newSize = d.width > d.height ? d.height : d.width;
-                newSize = newSize == 0 ? 100 : newSize;
-                return new Dimension(newSize, newSize);
-            }
-        };
-
-        squareComponent.add(panelMain);
-        squareComponent.setBackground(Color.CYAN);
-        gui.add(squareComponent);
-        return gui;
-    }
-
     /**
      * Called when the game is starting
      */

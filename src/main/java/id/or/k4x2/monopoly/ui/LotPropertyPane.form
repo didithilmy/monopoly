@@ -2,17 +2,17 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="id.or.k4x2.monopoly.ui.LotPropertyPane">
   <grid id="27dc6" binding="panel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="324" height="110"/>
+      <xy x="20" y="20" width="324" height="94"/>
     </constraints>
     <properties>
       <background color="-1"/>
     </properties>
     <border type="line">
       <size top="8" left="8" bottom="8" right="8"/>
+      <color color="-3881788"/>
     </border>
     <children>
-      <grid id="3f226" binding="panelColor" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="3f226" binding="panelColor" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints border-constraint="West"/>
         <properties>
           <background color="-1310714"/>
@@ -32,7 +32,7 @@
         <children>
           <component id="69856" class="javax.swing.JLabel" binding="lblLotName">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="18"/>
@@ -41,7 +41,7 @@
           </component>
           <component id="d3eb7" class="javax.swing.JLabel" binding="lblRent">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Harga Sewa"/>
@@ -49,7 +49,7 @@
           </component>
           <component id="c251e" class="javax.swing.JLabel" binding="lblHouse">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <enabled value="true"/>

@@ -254,8 +254,11 @@ public class GameWindow implements GameStateListener, PlayerAttributesListener, 
 
             @Override
             public void onWinnerDeclared(Player player) {
-                JOptionPane.showMessageDialog(frame,
-                        "Selamat kepada " + player.getName() + " karena memenangkan permainan ini!", "Pememang", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(frame, "Selamat kepada " + player.getName() + " karena memenangkan permainan ini!", "Pememang", JOptionPane.INFORMATION_MESSAGE);
+
+                // Show credits window
+                By by = new By(player.getName());
+                by.show();
             }
 
             @Override

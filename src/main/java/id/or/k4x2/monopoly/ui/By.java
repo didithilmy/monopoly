@@ -20,10 +20,10 @@ public class By {
         frame = new JFrame("Winner");
 
         frame.setContentPane(getPanel());
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(800, 600);
+        frame.setSize(400, 250);
         frame.setLocationRelativeTo(null);
     }
 

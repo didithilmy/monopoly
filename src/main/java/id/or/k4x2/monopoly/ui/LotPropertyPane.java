@@ -14,9 +14,11 @@ public class LotPropertyPane {
 
     public LotPropertyPane(Lot lot) {
         lblLotName.setText(lot.getName());
-        lblRent.setText("Rp"+lot.getRentPrice());
-        lblHouse.setText(lot.getNoOfHouses()+" Rumah");
-        //panelColor.setBackground(color);
+        lblRent.setText("Harga sewa: Rp"+lot.getRentPrice());
+        lblHouse.setText(lot.getNoOfHouses()+" rumah");
+
+        Lot.Group group = lot.getGroup();
+        panelColor.setBackground(new Color(group.getR(), group.getG(), group.getB()));
     }
 
     public JPanel getPanel() {

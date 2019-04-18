@@ -141,18 +141,40 @@ public class Lot extends Property {
      * Lot group enumeration
      */
     public enum Group {
-        BROWN(2), LIGHT_BLUE(3), PURPLE(3), ORANGE(3), RED(3), YELLOW(3), GREEN(3), BLUE(2);
+        BROWN(2, 139, 69, 17),
+        LIGHT_BLUE(3, 132, 207, 235),
+        PURPLE(3, 152, 49, 203),
+        ORANGE(3, 246, 171, 0),
+        RED(3, 252, 4, 5),
+        YELLOW(3, 254, 254, 3),
+        GREEN(3, 0, 128, 0),
+        BLUE(2, 0, 0, 192);
 
         private int no;
+        private int r, g, b;
 
-        Group(int no) {
+        Group(int no, int r, int g, int b) {
             this.no = no;
+            this.r = r;
+            this.g = g;
+            this.b = b;
         }
 
         public int getNo() {
             return no;
         }
-    }
+
+        public int getR() {
+            return r;
+        }
+
+        public int getG() {
+            return g;
+        }
+
+        public int getB() {
+            return b;
+        }}
 
     /**
      * Lot exception

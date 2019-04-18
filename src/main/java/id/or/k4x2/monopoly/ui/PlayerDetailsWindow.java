@@ -6,6 +6,10 @@ import id.or.k4x2.monopoly.entity.Properties.Railroad;
 import id.or.k4x2.monopoly.entity.Property;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.util.List;
 
 public class PlayerDetailsWindow {
@@ -32,6 +36,7 @@ public class PlayerDetailsWindow {
                 JPanel panel = railroadPropertyLane.getPanel();
                 panelProperty.add(panel);
             }
+            panelProperty.add(Box.createRigidArea(new Dimension(0,8)));
         }
     }
 
